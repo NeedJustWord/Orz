@@ -9,7 +9,7 @@ namespace Orz.Unity
 {
 	/// <summary>
 	/// 封装Unity的IoC容器类。
-	/// 可使用<see cref="OrzLazySingleton{T}"/>获取单例实例，其中T是<see cref="OrzUnity"/>
+	/// 可使用<see cref="OrzLazySingleton{T}"/>获取单例实例，其中T是<see cref="OrzUnity"/>。
 	/// </summary>
 	public class OrzUnity
 	{
