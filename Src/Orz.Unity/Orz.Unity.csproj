@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--<TargetFramework>net45</TargetFramework>-->
+    <!--<TargetFramework>net46</TargetFramework>-->
+    <!--<TargetFramework>net47</TargetFramework>-->
+    <!--<TargetFramework>netcoreapp1.0</TargetFramework>-->
+    <!--<TargetFramework>netcoreapp1.1</TargetFramework>-->
+    <!--<TargetFramework>netcoreapp2.0</TargetFramework>-->
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <!--<TargetFramework>netcoreapp2.2</TargetFramework>-->
+
+    <!--<TargetFrameworks>netcoreapp2.2;netcoreapp2.1;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;net47;net46;net45;</TargetFrameworks>-->
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Unity" Version="5.8.6" />
+  </ItemGroup>
+
+</Project>
