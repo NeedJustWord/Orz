@@ -30,11 +30,11 @@ namespace Orz.Common.Performance
 		/// 性能计数
 		/// </summary>
 		/// <param name="name">名称，不能为null或空串</param>
-		/// <param name="iteration">循环次数</param>
-		/// <param name="action">方法委托，不能为null</param>
+		/// <param name="iteration">循环次数，不能小于1</param>
+		/// <param name="action">测试性能的方法委托，不能为null</param>
 		public static void Run(string name, int iteration, Action action)
 		{
-			if (string.IsNullOrEmpty(name) || action == null) return;
+			if (string.IsNullOrEmpty(name) || iteration < 1 || action == null) return;
 
 			//1.打印name
 			ConsoleColor currentForeColor = Console.ForegroundColor;
@@ -80,11 +80,11 @@ namespace Orz.Common.Performance
 		/// 性能计数，推荐用此方法
 		/// </summary>
 		/// <param name="name">名称，不能为null或空串</param>
-		/// <param name="iteration">循环次数</param>
-		/// <param name="action">方法接口，不能为null</param>
+		/// <param name="iteration">循环次数，不能小于1</param>
+		/// <param name="action">测试性能的方法接口，不能为null</param>
 		public static void Run(string name, int iteration, ICodeTimerAction action)
 		{
-			if (string.IsNullOrEmpty(name) || action == null) return;
+			if (string.IsNullOrEmpty(name) || iteration < 1 || action == null) return;
 
 			//1.打印name
 			ConsoleColor currentForeColor = Console.ForegroundColor;

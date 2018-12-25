@@ -34,7 +34,7 @@ namespace Orz.Common.Extensions
 
 		#region 为空判断
 		/// <summary>
-		/// 是否为空数组,null不算空数组
+		/// 是否为空数组，null不算空数组
 		/// </summary>
 		/// <param name="array"></param>
 		/// <returns></returns>
@@ -150,7 +150,7 @@ namespace Orz.Common.Extensions
 
 		#region Combine
 		/// <summary>
-		/// 合并两个数组并返回合并后的新数组,combineWith在arrayToCombine前面。
+		/// 合并两个数组并返回合并后的新数组，combineWith在arrayToCombine前面。
 		/// 如果combineWith和arrayToCombine都为null则返回一个空数组。
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
@@ -221,8 +221,8 @@ namespace Orz.Common.Extensions
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="array"></param>
-		/// <param name="count"></param>
-		/// <param name="padToLength">长度不足时是否填充默认值来达到指定的总长度count，默认不填充</param>
+		/// <param name="count">要求大于0</param>
+		/// <param name="padToLength">剩余元素个数不足时是否填充默认值来达到指定的总长度count，默认不填充</param>
 		/// <returns></returns>
 		public static IEnumerable<T[]> BlockCopy<T>(this T[] array, int count, bool padToLength = false)
 		{

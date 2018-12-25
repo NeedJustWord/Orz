@@ -27,11 +27,21 @@ namespace Orz.Common.Threading
 		/// <summary>
 		/// 等待结果，成功返回true，失败或超时返回false
 		/// </summary>
-		/// <param name="overTime">超时时间</param>
+		/// <param name="timeout">等待时间</param>
 		/// <returns></returns>
-		public bool WaitResult(TimeSpan overTime)
+		public bool WaitResult(TimeSpan timeout)
 		{
-			return manualResetEvent.WaitOne(overTime) && isCommit;
+			return manualResetEvent.WaitOne(timeout) && isCommit;
+		}
+
+		/// <summary>
+		/// 等待结果，成功返回true，失败或超时返回false
+		/// </summary>
+		/// <param name="millisecondsTimeout">等待毫秒数，-1表示无限等待</param>
+		/// <returns></returns>
+		public bool WaitResult(int millisecondsTimeout)
+		{
+			return manualResetEvent.WaitOne(millisecondsTimeout) && isCommit;
 		}
 
 		/// <summary>

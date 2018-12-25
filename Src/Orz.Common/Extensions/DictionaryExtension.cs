@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Orz.Common.Extensions
 {
@@ -19,6 +20,8 @@ namespace Orz.Common.Extensions
 		/// <returns></returns>
 		public static Dictionary<Tkey, TValue> AddSafe<Tkey, TValue>(this Dictionary<Tkey, TValue> dict, Tkey key, TValue value)
 		{
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+
 			if (!dict.ContainsKey(key)) dict.Add(key, value);
 			return dict;
 		}
@@ -34,6 +37,8 @@ namespace Orz.Common.Extensions
 		/// <returns></returns>
 		public static Dictionary<Tkey, TValue> AddOrReplace<Tkey, TValue>(this Dictionary<Tkey, TValue> dict, Tkey key, TValue value)
 		{
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+
 			dict[key] = value;
 			return dict;
 		}
@@ -49,6 +54,8 @@ namespace Orz.Common.Extensions
 		/// <returns></returns>
 		public static TValue GetValue<Tkey, TValue>(this Dictionary<Tkey, TValue> dict, Tkey key, TValue defaultValue = default(TValue))
 		{
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+
 			return dict.ContainsKey(key) ? dict[key] : defaultValue;
 		}
 
@@ -63,9 +70,14 @@ namespace Orz.Common.Extensions
 		/// <returns></returns>
 		public static Dictionary<Tkey, TValue> AddRange<Tkey, TValue>(this Dictionary<Tkey, TValue> dict, IEnumerable<KeyValuePair<Tkey, TValue>> keyValues, bool replaceExisted = false)
 		{
-			foreach (var item in keyValues)
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+
+			if (keyValues != null)
 			{
-				if (replaceExisted || dict.ContainsKey(item.Key) == false) dict[item.Key] = item.Value;
+				foreach (var item in keyValues)
+				{
+					if (replaceExisted || dict.ContainsKey(item.Key) == false) dict[item.Key] = item.Value;
+				}
 			}
 			return dict;
 		}
@@ -83,6 +95,8 @@ namespace Orz.Common.Extensions
 		/// <returns></returns>
 		public static IDictionary<Tkey, TValue> AddSafe<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, Tkey key, TValue value)
 		{
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+
 			if (!dict.ContainsKey(key)) dict.Add(key, value);
 			return dict;
 		}
@@ -98,6 +112,8 @@ namespace Orz.Common.Extensions
 		/// <returns></returns>
 		public static IDictionary<Tkey, TValue> AddOrReplace<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, Tkey key, TValue value)
 		{
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+
 			dict[key] = value;
 			return dict;
 		}
@@ -113,6 +129,8 @@ namespace Orz.Common.Extensions
 		/// <returns></returns>
 		public static TValue GetValue<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, Tkey key, TValue defaultValue = default(TValue))
 		{
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+
 			return dict.ContainsKey(key) ? dict[key] : defaultValue;
 		}
 
@@ -127,9 +145,14 @@ namespace Orz.Common.Extensions
 		/// <returns></returns>
 		public static IDictionary<Tkey, TValue> AddRange<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, IEnumerable<KeyValuePair<Tkey, TValue>> keyValues, bool replaceExisted = false)
 		{
-			foreach (var item in keyValues)
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+
+			if (keyValues != null)
 			{
-				if (replaceExisted || dict.ContainsKey(item.Key) == false) dict[item.Key] = item.Value;
+				foreach (var item in keyValues)
+				{
+					if (replaceExisted || dict.ContainsKey(item.Key) == false) dict[item.Key] = item.Value;
+				}
 			}
 			return dict;
 		}

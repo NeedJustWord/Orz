@@ -35,7 +35,7 @@ namespace Orz.Unity
 		/// 注册类型
 		/// </summary>
 		/// <param name="type"></param>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="lifetimeManager"></param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
@@ -50,7 +50,7 @@ namespace Orz.Unity
 		/// </summary>
 		/// <param name="from"></param>
 		/// <param name="to"></param>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="lifetimeManager"></param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
@@ -64,7 +64,7 @@ namespace Orz.Unity
 		/// 注册类型
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="lifetimeManager"></param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
@@ -79,7 +79,7 @@ namespace Orz.Unity
 		/// </summary>
 		/// <typeparam name="TFrom"></typeparam>
 		/// <typeparam name="TTo"></typeparam>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="lifetimeManager"></param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
@@ -96,7 +96,7 @@ namespace Orz.Unity
 		/// </summary>
 		/// <param name="type"></param>
 		/// <param name="instance"></param>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="lifetime"></param>
 		/// <returns></returns>
 		public OrzUnity RegisterInstance(Type type, object instance, string name = null, LifetimeManager lifetime = null)
@@ -111,7 +111,7 @@ namespace Orz.Unity
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="instance"></param>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="lifetime"></param>
 		/// <returns></returns>
 		public OrzUnity RegisterInstance<TInterface>(TInterface instance, string name = null, LifetimeManager lifetime = null)
@@ -127,7 +127,7 @@ namespace Orz.Unity
 		/// 注册单例类型
 		/// </summary>
 		/// <param name="type"></param>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
 		public OrzUnity RegisterSingleton(Type type, string name = null, params InjectionMember[] injectionMembers)
@@ -141,7 +141,7 @@ namespace Orz.Unity
 		/// </summary>
 		/// <param name="from"></param>
 		/// <param name="to"></param>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
 		public OrzUnity RegisterSingleton(Type from, Type to, string name = null, params InjectionMember[] injectionMembers)
@@ -154,7 +154,7 @@ namespace Orz.Unity
 		/// 注册单例类型
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
 		public OrzUnity RegisterSingleton<T>(string name = null, params InjectionMember[] injectionMembers)
@@ -168,7 +168,7 @@ namespace Orz.Unity
 		/// </summary>
 		/// <typeparam name="TFrom"></typeparam>
 		/// <typeparam name="TTo"></typeparam>
-		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
 		public OrzUnity RegisterSingleton<TFrom, TTo>(string name = null, params InjectionMember[] injectionMembers) where TTo : TFrom
@@ -185,7 +185,7 @@ namespace Orz.Unity
 		/// 解析对象
 		/// </summary>
 		/// <param name="type"></param>
-		/// <param name="name">null和string.Empty表示解析默认对象(内部都是使用null),否则表示解析命名对象</param>
+		/// <param name="name">null和string.Empty表示解析默认对象(内部都是使用null)，否则表示解析命名对象</param>
 		/// <param name="resolverOverrides"></param>
 		/// <returns></returns>
 		public object Resolve(Type type, string name = null, params ResolverOverride[] resolverOverrides)
@@ -197,7 +197,7 @@ namespace Orz.Unity
 		/// 解析对象
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="name">null和string.Empty表示解析默认对象(内部都是使用null),否则表示解析命名对象</param>
+		/// <param name="name">null和string.Empty表示解析默认对象(内部都是使用null)，否则表示解析命名对象</param>
 		/// <param name="resolverOverrides"></param>
 		/// <returns></returns>
 		public T Resolve<T>(string name = null, params ResolverOverride[] resolverOverrides)
@@ -233,7 +233,7 @@ namespace Orz.Unity
 		/// 判断类型在指定命名下是否注册
 		/// </summary>
 		/// <param name="typeToCheck"></param>
-		/// <param name="nameToCheck">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="nameToCheck">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <returns></returns>
 		public bool IsRegistered(Type typeToCheck, string nameToCheck = null)
 		{
@@ -244,7 +244,7 @@ namespace Orz.Unity
 		/// 判断类型在指定命名下是否注册
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="nameToCheck">null和string.Empty表示默认注册(内部都是使用null),否则表示命名注册</param>
+		/// <param name="nameToCheck">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <returns></returns>
 		public bool IsRegistered<T>(string nameToCheck = null)
 		{

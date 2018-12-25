@@ -117,7 +117,7 @@ namespace Orz.Common.Extensions
 
 		#region ToLower
 		/// <summary>
-		/// 将str转小写,str为null时返回nullValue
+		/// 将str转小写，str为null时返回nullValue
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>
@@ -128,7 +128,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 将str转小写,str为null或culture为null时返回nullValue
+		/// 将str转小写，str为null或culture为null时返回nullValue
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="culture"></param>
@@ -140,7 +140,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 使用CultureInfo.InvariantCulture将str转小写,str为null时返回nullValue
+		/// 使用CultureInfo.InvariantCulture将str转小写，str为null时返回nullValue
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>
@@ -153,7 +153,7 @@ namespace Orz.Common.Extensions
 
 		#region ToUpper
 		/// <summary>
-		/// 将str转大写,str为null时返回nullValue
+		/// 将str转大写，str为null时返回nullValue
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>
@@ -164,7 +164,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 将str转大写,str为null或culture为null时返回nullValue
+		/// 将str转大写，str为null或culture为null时返回nullValue
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="culture"></param>
@@ -176,7 +176,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 使用CultureInfo.InvariantCulture将str转大写,str为null时返回nullValue
+		/// 使用CultureInfo.InvariantCulture将str转大写，str为null时返回nullValue
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>

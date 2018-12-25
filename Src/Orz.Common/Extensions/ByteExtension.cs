@@ -27,7 +27,7 @@ namespace Orz.Common.Extensions
 		/// </summary>
 		/// <param name="bytes"></param>
 		/// <param name="toUpper">是否大写</param>
-		/// <param name="separator">分隔符,为null时表示用空格分隔</param>
+		/// <param name="separator">分隔符，为null时表示用空格分隔</param>
 		/// <returns></returns>
 		public static string ToHex(this IEnumerable<byte> bytes, bool toUpper = true, string separator = null)
 		{
@@ -51,7 +51,7 @@ namespace Orz.Common.Extensions
 		/// 判断第index位是否为1
 		/// </summary>
 		/// <param name="value"></param>
-		/// <param name="index">0-7,从右数起</param>
+		/// <param name="index">0-7，从右数起</param>
 		/// <returns></returns>
 		public static bool IsBitOne(this byte value, int index)
 		{
@@ -62,7 +62,7 @@ namespace Orz.Common.Extensions
 		/// 判断第index位是否为0
 		/// </summary>
 		/// <param name="value"></param>
-		/// <param name="index">0-7,从右数起</param>
+		/// <param name="index">0-7，从右数起</param>
 		/// <returns></returns>
 		public static bool IsBitZero(this byte value, int index)
 		{
@@ -73,7 +73,7 @@ namespace Orz.Common.Extensions
 		/// 将第index位设为1
 		/// </summary>
 		/// <param name="value"></param>
-		/// <param name="index">0-7,从右数起</param>
+		/// <param name="index">0-7，从右数起</param>
 		/// <returns></returns>
 		public static byte SetBit(this byte value, int index)
 		{
@@ -85,7 +85,7 @@ namespace Orz.Common.Extensions
 		/// 将第index位设为0
 		/// </summary>
 		/// <param name="value"></param>
-		/// <param name="index">0-7,从右数起</param>
+		/// <param name="index">0-7，从右数起</param>
 		/// <returns></returns>
 		public static byte ClearBit(this byte value, int index)
 		{
@@ -97,7 +97,7 @@ namespace Orz.Common.Extensions
 		/// 将第index位取反
 		/// </summary>
 		/// <param name="value"></param>
-		/// <param name="index">0-7,从右数起</param>
+		/// <param name="index">0-7，从右数起</param>
 		/// <returns></returns>
 		public static byte ReverseBit(this byte value, int index)
 		{
@@ -108,7 +108,7 @@ namespace Orz.Common.Extensions
 
 		#region 编码
 		/// <summary>
-		/// 将字节数组转换成base64编码的字符串,为null时返回空串
+		/// 将字节数组转换成base64编码的字符串，为null时返回空串
 		/// </summary>
 		/// <param name="bytes"></param>
 		/// <returns></returns>

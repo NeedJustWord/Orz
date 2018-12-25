@@ -37,10 +37,10 @@ namespace Orz.Common.Threading
 		/// 等待结果，成功返回true，失败或超时返回false
 		/// </summary>
 		/// <param name="key">key</param>
-		/// <param name="overTime">超时时间</param>
+		/// <param name="timeout">等待时间</param>
 		/// <param name="result">结果</param>
 		/// <returns></returns>
-		public bool WaitResult(string key, TimeSpan overTime, out T result)
+		public bool WaitResult(string key, TimeSpan timeout, out T result)
 		{
 			key = key ?? "";
 
@@ -58,7 +58,37 @@ namespace Orz.Common.Threading
 				}
 			}
 
-			var flag = handle.WaitResult(overTime);
+			var flag = handle.WaitResult(timeout);
+			result = flag ? handle.GetResult() : default(T);
+			return flag;
+		}
+
+		/// <summary>
+		/// 等待结果，成功返回true，失败或超时返回false
+		/// </summary>
+		/// <param name="key">key</param>
+		/// <param name="millisecondsTimeout">等待毫秒数，-1表示无限等待</param>
+		/// <param name="result">结果</param>
+		/// <returns></returns>
+		public bool WaitResult(string key, int millisecondsTimeout, out T result)
+		{
+			key = key ?? "";
+
+			WaitResultHandle<T> handle = null;
+			lock (lockObj)
+			{
+				if (dict.ContainsKey(key))
+				{
+					handle = dict[key];
+				}
+				else
+				{
+					handle = new WaitResultHandle<T>();
+					dict.Add(key, handle);
+				}
+			}
+
+			var flag = handle.WaitResult(millisecondsTimeout);
 			result = flag ? handle.GetResult() : default(T);
 			return flag;
 		}
