@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using Microsoft.Practices.Unity.Configuration;
 using Unity;
 using Unity.Lifetime;
 using Unity.Registration;
@@ -174,6 +176,34 @@ namespace Orz.Unity
 		public OrzUnity RegisterSingleton<TFrom, TTo>(string name = null, params InjectionMember[] injectionMembers) where TTo : TFrom
 		{
 			Container.RegisterSingleton<TFrom, TTo>(name, injectionMembers);
+			return this;
+		}
+		#endregion
+
+		#region LoadConfigFile
+		/// <summary>
+		/// 加载默认配置文件（App.config或Web.config）里的类型注册信息
+		/// </summary>
+		/// <param name="sectionName"></param>
+		/// <param name="containerName"></param>
+		/// <returns></returns>
+		public OrzUnity LoadDefaultConfigFile(string sectionName = "unity", string containerName = "")
+		{
+			UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection(sectionName);
+			Container.LoadConfiguration(section, containerName);
+			return this;
+		}
+
+		/// <summary>
+		/// 加载指定配置文件里的类型注册信息
+		/// </summary>
+		/// <param name="configFilename">配置文件名</param>
+		/// <param name="sectionName"></param>
+		/// <param name="containerName"></param>
+		/// <returns></returns>
+		public OrzUnity LoadConfigFile(string configFilename = "unity.config", string sectionName = "unity", string containerName = "")
+		{
+			Container.LoadConfiguration(configFilename, sectionName, containerName);
 			return this;
 		}
 		#endregion
