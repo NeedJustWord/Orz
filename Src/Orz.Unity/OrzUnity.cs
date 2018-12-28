@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using Microsoft.Practices.Unity.Configuration;
 using Unity;
 using Unity.Lifetime;
 using Unity.Registration;
 using Unity.Resolution;
+
+#if HAVE_UNITY_CONFIGURATION
+using System.Configuration;
+using Microsoft.Practices.Unity.Configuration;
+#endif
 
 namespace Orz.Unity
 {
@@ -180,6 +183,7 @@ namespace Orz.Unity
 		}
 		#endregion
 
+#if HAVE_UNITY_CONFIGURATION
 		#region LoadConfigFile
 		/// <summary>
 		/// 加载默认配置文件（App.config或Web.config）里的类型注册信息
@@ -207,6 +211,7 @@ namespace Orz.Unity
 			return this;
 		}
 		#endregion
+#endif
 
 		#endregion
 

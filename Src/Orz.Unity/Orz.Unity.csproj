@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!--<TargetFramework>net45</TargetFramework>-->
@@ -10,13 +10,24 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <!--<TargetFramework>netcoreapp2.2</TargetFramework>-->
 
+    <!--<TargetFrameworks>net47;net46;net45;</TargetFrameworks>-->
+    <!--<TargetFrameworks>netcoreapp1.1;netcoreapp1.0;</TargetFrameworks>-->
+    <!--<TargetFrameworks>netcoreapp2.2;netcoreapp2.1;netcoreapp2.0;</TargetFrameworks>-->
+
     <!--<TargetFrameworks>netcoreapp2.2;netcoreapp2.1;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;net47;net46;net45;</TargetFrameworks>-->
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp2.2' or '$(TargetFramework)'=='netcoreapp2.1' or '$(TargetFramework)'=='netcoreapp2.0' or '$(TargetFramework)'=='net47' or '$(TargetFramework)'=='net46' or '$(TargetFramework)'=='net45'">
+    <DefineConstants>HAVE_UNITY_CONFIGURATION</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.2' or '$(TargetFramework)'=='netcoreapp2.1' or '$(TargetFramework)'=='netcoreapp2.0' or '$(TargetFramework)'=='net47' or '$(TargetFramework)'=='net46' or '$(TargetFramework)'=='net45'">
+    <PackageReference Include="Unity.Configuration" Version="5.2.3" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Unity" Version="5.8.6" />
-    <PackageReference Include="Unity.Configuration" Version="5.2.3" />
   </ItemGroup>
 
 </Project>

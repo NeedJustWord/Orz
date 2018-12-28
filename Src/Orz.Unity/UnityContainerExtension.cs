@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if HAVE_UNITY_CONFIGURATION
+using System;
 using System.Configuration;
 using Microsoft.Practices.Unity.Configuration;
 using Unity;
@@ -30,3 +31,4 @@ namespace Orz.Unity
 		}
 	}
 }
+#endif
