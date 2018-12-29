@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Src\Orz.Unity\Orz.Unity.csproj" />
+    <ProjectReference Include="..\Orz.Unity.Implement\Orz.Unity.Implement.csproj" />
+    <ProjectReference Include="..\Orz.Unity.Interfaces\Orz.Unity.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="unity.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
