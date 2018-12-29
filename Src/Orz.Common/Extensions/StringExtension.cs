@@ -128,18 +128,6 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 将str转小写，str为null或culture为null时返回nullValue
-		/// </summary>
-		/// <param name="str"></param>
-		/// <param name="culture"></param>
-		/// <param name="nullValue"></param>
-		/// <returns></returns>
-		public static string ToLowerSafe(this string str, CultureInfo culture, string nullValue = "")
-		{
-			return (str == null || culture == null) ? nullValue : str.ToLower(culture);
-		}
-
-		/// <summary>
 		/// 使用CultureInfo.InvariantCulture将str转小写，str为null时返回nullValue
 		/// </summary>
 		/// <param name="str"></param>
@@ -161,18 +149,6 @@ namespace Orz.Common.Extensions
 		public static string ToUpperSafe(this string str, string nullValue = "")
 		{
 			return str == null ? nullValue : str.ToUpper();
-		}
-
-		/// <summary>
-		/// 将str转大写，str为null或culture为null时返回nullValue
-		/// </summary>
-		/// <param name="str"></param>
-		/// <param name="culture"></param>
-		/// <param name="nullValue"></param>
-		/// <returns></returns>
-		public static string ToUpperSafe(this string str, CultureInfo culture, string nullValue = "")
-		{
-			return (str == null || culture == null) ? nullValue : str.ToUpper(culture);
 		}
 
 		/// <summary>
@@ -297,5 +273,33 @@ namespace Orz.Common.Extensions
 			return str == null ? nullValue : str.Length;
 		}
 		#endregion
+
+#if !IS_NETCOREAPP1
+		#region 安全转换
+		/// <summary>
+		/// 将str转小写，str为null或culture为null时返回nullValue
+		/// </summary>
+		/// <param name="str"></param>
+		/// <param name="culture"></param>
+		/// <param name="nullValue"></param>
+		/// <returns></returns>
+		public static string ToLowerSafe(this string str, CultureInfo culture, string nullValue = "")
+		{
+			return (str == null || culture == null) ? nullValue : str.ToLower(culture);
+		}
+
+		/// <summary>
+		/// 将str转大写，str为null或culture为null时返回nullValue
+		/// </summary>
+		/// <param name="str"></param>
+		/// <param name="culture"></param>
+		/// <param name="nullValue"></param>
+		/// <returns></returns>
+		public static string ToUpperSafe(this string str, CultureInfo culture, string nullValue = "")
+		{
+			return (str == null || culture == null) ? nullValue : str.ToUpper(culture);
+		}
+		#endregion
+#endif
 	}
 }

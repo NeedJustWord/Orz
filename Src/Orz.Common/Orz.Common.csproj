@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!--<TargetFramework>net45</TargetFramework>-->
@@ -10,12 +10,20 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <!--<TargetFramework>netcoreapp2.2</TargetFramework>-->
 
+    <!--<TargetFrameworks>net47;net46;net45;</TargetFrameworks>-->
+    <!--<TargetFrameworks>netcoreapp1.1;netcoreapp1.0;</TargetFrameworks>-->
+    <!--<TargetFrameworks>netcoreapp2.2;netcoreapp2.1;netcoreapp2.0;</TargetFrameworks>-->
+
     <!--<TargetFrameworks>netcoreapp2.2;netcoreapp2.1;netcoreapp2.0;netcoreapp1.1;netcoreapp1.0;net47;net46;net45;</TargetFrameworks>-->
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net47' or '$(TargetFramework)'=='net46' or '$(TargetFramework)'=='net45'">
-    <DefineConstants>IsFramework</DefineConstants>
+    <DefineConstants>IS_FRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp1.1' or '$(TargetFramework)'=='netcoreapp1.0'">
+    <DefineConstants>IS_NETCOREAPP1</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

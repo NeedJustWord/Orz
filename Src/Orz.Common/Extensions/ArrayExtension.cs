@@ -19,17 +19,6 @@ namespace Orz.Common.Extensions
 		{
 			return array == null ? nullValue : array.Length;
 		}
-
-		/// <summary>
-		/// 获取Array的所有维数中元素的总数，为null时返回nullValue
-		/// </summary>
-		/// <param name="array"></param>
-		/// <param name="nullValue"></param>
-		/// <returns></returns>
-		public static long LongLengthNull(this Array array, long nullValue = 0)
-		{
-			return array == null ? nullValue : array.LongLength;
-		}
 		#endregion
 
 		#region 为空判断
@@ -64,17 +53,6 @@ namespace Orz.Common.Extensions
 		public static bool WithinIndex(this Array array, int index)
 		{
 			return array != null && index > -1 && index < array.Length;
-		}
-
-		/// <summary>
-		/// 判断index是否在数组范围内
-		/// </summary>
-		/// <param name="array"></param>
-		/// <param name="index"></param>
-		/// <returns></returns>
-		public static bool WithinIndex(this Array array, long index)
-		{
-			return array != null && index > -1 && index < array.LongLength;
 		}
 
 		/// <summary>
@@ -235,5 +213,29 @@ namespace Orz.Common.Extensions
 			}
 		}
 		#endregion
+
+#if !IS_NETCOREAPP1
+		/// <summary>
+		/// 获取Array的所有维数中元素的总数，为null时返回nullValue
+		/// </summary>
+		/// <param name="array"></param>
+		/// <param name="nullValue"></param>
+		/// <returns></returns>
+		public static long LongLengthNull(this Array array, long nullValue = 0)
+		{
+			return array == null ? nullValue : array.LongLength;
+		}
+
+		/// <summary>
+		/// 判断index是否在数组范围内
+		/// </summary>
+		/// <param name="array"></param>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		public static bool WithinIndex(this Array array, long index)
+		{
+			return array != null && index > -1 && index < array.LongLength;
+		}
+#endif
 	}
 }

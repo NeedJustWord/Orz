@@ -54,9 +54,9 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		private static DateTime GetUnixStartLocalTime()
 		{
-			return TimeZoneInfo.ConvertTimeFromUtc(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
+			return TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc, TimeZoneInfo.Local);
 			//#if HaveTimeZoneInfo
-			//			return TimeZoneInfo.ConvertTimeFromUtc(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
+			//			return TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc, TimeZoneInfo.Local);
 			//#else
 			//			return TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
 			//#endif

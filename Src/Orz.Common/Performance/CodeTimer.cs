@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+#if !IS_NETCOREAPP1
 using System.Threading;
+#endif
 
 namespace Orz.Common.Performance
 {
@@ -21,7 +23,9 @@ namespace Orz.Common.Performance
 		public static void Initialize()
 		{
 			Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+#if !IS_NETCOREAPP1
 			Thread.CurrentThread.Priority = ThreadPriority.Highest;
+#endif
 			Run("", 1, () => { });
 			Run("", 1, (ICodeTimerAction)null);
 		}

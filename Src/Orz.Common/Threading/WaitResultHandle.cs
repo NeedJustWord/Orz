@@ -84,7 +84,6 @@ namespace Orz.Common.Threading
 		public void Dispose()
 		{
 			manualResetEvent.Set();
-			manualResetEvent.Close();
 			manualResetEvent.Dispose();
 		}
 	}
