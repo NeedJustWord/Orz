@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Newtonsoft.Json;
 
 namespace Orz.Common.Helpers
@@ -20,6 +21,21 @@ namespace Orz.Common.Helpers
 		{
 			var settings = CreateJsonSerializerSettings(dateFormatString);
 			return JsonConvert.SerializeObject(value, settings);
+		}
+
+		/// <summary>
+		/// 将实例序列化成json文件
+		/// </summary>
+		/// <typeparam name="T">序列化类型</typeparam>
+		/// <param name="value">序列化实例</param>
+		/// <param name="path">文件路径</param>
+		/// <param name="dateFormatString">时间的格式化字符串，为null表示使用默认的格式化字符串</param>
+		/// <returns></returns>
+		public static bool SerializeObjectToFile<T>(T value, string path, string dateFormatString = DateTimeFormatString.DateTimeStringUsual)
+		{
+			var json = SerializeObject(value, dateFormatString);
+			File.WriteAllText(path, json);
+			return true;
 		}
 		#endregion
 
@@ -50,6 +66,22 @@ namespace Orz.Common.Helpers
 		{
 			var settings = CreateJsonSerializerSettings(dateFormatString);
 			return JsonConvert.DeserializeObject<T>(json, settings);
+		}
+
+		/// <summary>
+		/// 将json文件反序列化成指定类型的实例
+		/// </summary>
+		/// <typeparam name="T">反序列化类型</typeparam>
+		/// <param name="path">json文件路径</param>
+		/// <param name="dateFormatString">时间的格式化字符串，为null表示使用默认的格式化字符串</param>
+		/// <exception cref="FileNotFoundException">文件不存在</exception>
+		/// <returns></returns>
+		public static T DeserializeObjectFromFile<T>(string path, string dateFormatString = DateTimeFormatString.DateTimeStringUsual)
+		{
+			if (!File.Exists(path)) throw new FileNotFoundException(nameof(path));
+
+			var json = File.ReadAllText(path);
+			return DeserializeObject<T>(json, dateFormatString);
 		}
 		#endregion
 
