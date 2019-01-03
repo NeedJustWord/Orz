@@ -13,13 +13,13 @@ using Microsoft.Practices.Unity.Configuration;
 namespace Orz.Unity
 {
 	/// <summary>
-	/// 封装Unity的IoC容器类。
+	/// 封装<see cref="IUnityContainer"/>的IoC容器类。
 	/// 可使用<see cref="LazySingleton{T}"/>获取单例实例，其中T是<see cref="OrzUnity"/>。
 	/// </summary>
 	public class OrzUnity
 	{
 		/// <summary>
-		/// Ioc容器
+		/// IoC容器
 		/// </summary>
 		public readonly IUnityContainer Container;
 
@@ -201,7 +201,7 @@ namespace Orz.Unity
 		/// <summary>
 		/// 加载指定配置文件里的类型注册信息
 		/// </summary>
-		/// <param name="configFilename">配置文件名</param>
+		/// <param name="configFilename">配置文件的相对路径(相对当前工作目录)或绝对路径</param>
 		/// <param name="sectionName"></param>
 		/// <param name="containerName"></param>
 		/// <returns></returns>

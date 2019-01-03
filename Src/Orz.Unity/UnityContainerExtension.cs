@@ -1,10 +1,9 @@
 ﻿#if HAVE_UNITY_CONFIGURATION
 using System;
 using System.Configuration;
-using Microsoft.Practices.Unity.Configuration;
 using Unity;
 
-namespace Orz.Unity
+namespace Microsoft.Practices.Unity.Configuration
 {
 	/// <summary>
 	/// <see cref="IUnityContainer"/>扩展
@@ -15,7 +14,7 @@ namespace Orz.Unity
 		/// 加载指定配置文件里的类型注册信息到IoC容器
 		/// </summary>
 		/// <param name="container">IoC容器</param>
-		/// <param name="configFilename">配置文件名</param>
+		/// <param name="configFilename">配置文件的相对路径(相对当前工作目录)或绝对路径</param>
 		/// <param name="sectionName"></param>
 		/// <param name="containerName"></param>
 		/// <exception cref="ArgumentNullException">container为null</exception>
@@ -24,9 +23,9 @@ namespace Orz.Unity
 		{
 			if (container == null) throw new ArgumentNullException(nameof(container));
 
-			ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = configFilename };
-			Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-			UnityConfigurationSection section = (UnityConfigurationSection)configuration.GetSection(sectionName);
+			var fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = configFilename };
+			var configuration = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+			var section = (UnityConfigurationSection)configuration.GetSection(sectionName);
 			return container.LoadConfiguration(section, containerName);
 		}
 	}
