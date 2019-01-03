@@ -6,12 +6,12 @@ namespace Orz.Common
 	/// 具有延迟加载特性的泛型单例类
 	/// </summary>
 	/// <typeparam name="T">要求具有公共的无参构造函数</typeparam>
-	public sealed class OrzLazySingleton<T> where T : new()
+	public sealed class LazySingleton<T> where T : new()
 	{
 		/// <summary>
 		/// 静态延迟加载特性
 		/// </summary>
-		private static readonly Lazy<OrzLazySingleton<T>> lazy = new Lazy<OrzLazySingleton<T>>(() => new OrzLazySingleton<T>());
+		private static readonly Lazy<LazySingleton<T>> lazy = new Lazy<LazySingleton<T>>(() => new LazySingleton<T>());
 
 		/// <summary>
 		/// 静态泛型实例属性
@@ -26,6 +26,6 @@ namespace Orz.Common
 		/// <summary>
 		/// 私有构造函数
 		/// </summary>
-		private OrzLazySingleton() => instance = new T();
+		private LazySingleton() => instance = new T();
 	}
 }

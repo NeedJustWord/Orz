@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Src\Orz.Common\Orz.Common.csproj" />
-    <ProjectReference Include="..\..\Src\Orz.Unity\Orz.Unity.csproj" />
   </ItemGroup>
 
 </Project>

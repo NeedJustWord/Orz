@@ -21,7 +21,7 @@ namespace Orz.Unity.Test
 		{
 			Console.WriteLine("RegisterType:");
 
-			var orzUnity = OrzLazySingleton<OrzUnity>.Instance;
+			var orzUnity = LazySingleton<OrzUnity>.Instance;
 			orzUnity.RegisterType<IPhone, ApplePhone>();
 			orzUnity.RegisterType<IHeadphone, Headphone>();
 			orzUnity.RegisterType<IMicrophone, Microphone>();
@@ -37,7 +37,7 @@ namespace Orz.Unity.Test
 		{
 			Console.WriteLine("LoadDefaultConfigFile:");
 
-			var orzUnity = OrzLazySingleton<OrzUnity>.Instance;
+			var orzUnity = LazySingleton<OrzUnity>.Instance;
 			orzUnity.LoadDefaultConfigFile();
 
 			Print();
@@ -50,7 +50,7 @@ namespace Orz.Unity.Test
 		{
 			Console.WriteLine("LoadConfigFile:");
 
-			var orzUnity = OrzLazySingleton<OrzUnity>.Instance;
+			var orzUnity = LazySingleton<OrzUnity>.Instance;
 			orzUnity.LoadConfigFile();
 
 			Print();
@@ -58,7 +58,7 @@ namespace Orz.Unity.Test
 
 		static void Print()
 		{
-			var phone = OrzLazySingleton<OrzUnity>.Instance.Resolve<IPhone>();
+			var phone = LazySingleton<OrzUnity>.Instance.Resolve<IPhone>();
 			phone.Print();
 		}
 	}
