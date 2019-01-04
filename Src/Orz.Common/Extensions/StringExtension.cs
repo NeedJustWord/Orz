@@ -1,10 +1,13 @@
 ﻿using System;
+
+#if IS_FRAMEWORK || IS_NETCOREAPP2
 using System.Globalization;
+#endif
 
 namespace Orz.Common.Extensions
 {
 	/// <summary>
-	/// 字符串扩展方法
+	/// <see cref="string"/>扩展方法
 	/// </summary>
 	public static class StringExtension
 	{
@@ -12,7 +15,7 @@ namespace Orz.Common.Extensions
 
 		#region IsNull、IsNotNull
 		/// <summary>
-		/// 是否为Null
+		/// 是否为null
 		/// </summary>
 		/// <param name="str"></param>
 		/// <returns></returns>
@@ -22,7 +25,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 是否不为Null
+		/// 是否不为null
 		/// </summary>
 		/// <param name="str"></param>
 		/// <returns></returns>
@@ -34,7 +37,7 @@ namespace Orz.Common.Extensions
 
 		#region IsNullOrEmpty、IsNotNullAndEmpty
 		/// <summary>
-		/// 是否为Null或空串
+		/// 是否为null或空串
 		/// </summary>
 		/// <param name="str"></param>
 		/// <returns></returns>
@@ -44,7 +47,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 是否不为Null且不为空串
+		/// 是否不为null且不为空串
 		/// </summary>
 		/// <param name="str"></param>
 		/// <returns></returns>
@@ -56,7 +59,7 @@ namespace Orz.Common.Extensions
 
 		#region IsNullOrWhiteSpace、IsNotNullAndWhiteSpace
 		/// <summary>
-		/// 是否为Null或空白字符串
+		/// 是否为null或空白字符串
 		/// </summary>
 		/// <param name="str"></param>
 		/// <returns></returns>
@@ -66,7 +69,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 是否不为Null且不为空白字符串
+		/// 是否不为null且不为空白字符串
 		/// </summary>
 		/// <param name="str"></param>
 		/// <returns></returns>
@@ -78,7 +81,7 @@ namespace Orz.Common.Extensions
 
 		#region IfNull、IfNullOrEmpty、IfNullOrWhiteSpace
 		/// <summary>
-		/// 如果为Null，则返回defaultValue，否则返回str
+		/// 如果为null，则返回<paramref name="defaultValue"/>，否则返回<paramref name="str"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="defaultValue"></param>
@@ -89,7 +92,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 如果为Null或空串，则返回defaultValue，否则返回str
+		/// 如果为null或空串，则返回<paramref name="defaultValue"/>，否则返回<paramref name="str"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="defaultValue"></param>
@@ -100,7 +103,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 如果为Null或空白字符串，则返回defaultValue，否则返回str
+		/// 如果为null或空白字符串，则返回<paramref name="defaultValue"/>，否则返回<paramref name="str"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="defaultValue"></param>
@@ -117,7 +120,7 @@ namespace Orz.Common.Extensions
 
 		#region ToLower
 		/// <summary>
-		/// 将str转小写，str为null时返回nullValue
+		/// 将<paramref name="str"/>转小写，<paramref name="str"/>为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>
@@ -128,7 +131,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 使用CultureInfo.InvariantCulture将str转小写，str为null时返回nullValue
+		/// 将<paramref name="str"/>转小写，<paramref name="str"/>为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>
@@ -141,7 +144,7 @@ namespace Orz.Common.Extensions
 
 		#region ToUpper
 		/// <summary>
-		/// 将str转大写，str为null时返回nullValue
+		/// 将<paramref name="str"/>转大写，<paramref name="str"/>为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>
@@ -152,7 +155,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 使用CultureInfo.InvariantCulture将str转大写，str为null时返回nullValue
+		/// 将<paramref name="str"/>转大写，<paramref name="str"/>为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>
@@ -165,7 +168,7 @@ namespace Orz.Common.Extensions
 
 		#region ToCharArray
 		/// <summary>
-		/// 将str转字符数组，为null时返回空数组
+		/// 将<paramref name="str"/>转字符数组，<paramref name="str"/>为null时返回空数组
 		/// </summary>
 		/// <param name="str"></param>
 		/// <returns></returns>
@@ -175,12 +178,12 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 将str的指定子串转字符数组，为null时返回空数组
+		/// 将<paramref name="str"/>的指定子串转字符数组，<paramref name="str"/>为null时返回空数组
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="startIndex">子串开始下标</param>
 		/// <param name="length">子串长度</param>
-		/// <exception cref="ArgumentOutOfRangeException">startIndex或length超出范围</exception>
+		/// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/>或<paramref name="length"/>超出范围</exception>
 		/// <returns></returns>
 		public static char[] ToCharArraySafe(this string str, int startIndex, int length)
 		{
@@ -194,58 +197,58 @@ namespace Orz.Common.Extensions
 		/// <summary>
 		/// 格式化字符串
 		/// </summary>
-		/// <param name="str"></param>
+		/// <param name="format"></param>
 		/// <param name="arg0"></param>
 		/// <param name="provider"></param>
 		/// <returns></returns>
-		public static string FormatWith(this string str, object arg0, IFormatProvider provider = null)
+		public static string FormatWith(this string format, object arg0, IFormatProvider provider = null)
 		{
-			return string.Format(provider, str, arg0);
+			return string.Format(provider, format, arg0);
 		}
 
 		/// <summary>
 		/// 格式化字符串
 		/// </summary>
-		/// <param name="str"></param>
+		/// <param name="format"></param>
 		/// <param name="arg0"></param>
 		/// <param name="arg1"></param>
 		/// <param name="provider"></param>
 		/// <returns></returns>
-		public static string FormatWith(this string str, object arg0, object arg1, IFormatProvider provider = null)
+		public static string FormatWith(this string format, object arg0, object arg1, IFormatProvider provider = null)
 		{
-			return string.Format(provider, str, arg0, arg1);
+			return string.Format(provider, format, arg0, arg1);
 		}
 
 		/// <summary>
 		/// 格式化字符串
 		/// </summary>
-		/// <param name="str"></param>
+		/// <param name="format"></param>
 		/// <param name="arg0"></param>
 		/// <param name="arg1"></param>
 		/// <param name="arg2"></param>
 		/// <param name="provider"></param>
 		/// <returns></returns>
-		public static string FormatWith(this string str, object arg0, object arg1, object arg2, IFormatProvider provider = null)
+		public static string FormatWith(this string format, object arg0, object arg1, object arg2, IFormatProvider provider = null)
 		{
-			return string.Format(provider, str, arg0, arg1, arg2);
+			return string.Format(provider, format, arg0, arg1, arg2);
 		}
 
 		/// <summary>
 		/// 格式化字符串
 		/// </summary>
-		/// <param name="str"></param>
+		/// <param name="format"></param>
 		/// <param name="provider"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
-		public static string FormatWith(this string str, IFormatProvider provider = null, params object[] args)
+		public static string FormatWith(this string format, IFormatProvider provider = null, params object[] args)
 		{
-			return string.Format(provider, str, args);
+			return string.Format(provider, format, args);
 		}
 		#endregion
 
 		#region 反转字符串
 		/// <summary>
-		/// 反转字符串，当str为null时，返回nullValue
+		/// 反转字符串，当<paramref name="str"/>为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>
@@ -263,7 +266,7 @@ namespace Orz.Common.Extensions
 
 		#region 长度
 		/// <summary>
-		/// 获取字符串长度，当字符串为null时返回nullValue
+		/// 获取字符串长度，当字符串为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="nullValue"></param>
@@ -274,10 +277,10 @@ namespace Orz.Common.Extensions
 		}
 		#endregion
 
-#if !IS_NETCOREAPP1
+#if IS_FRAMEWORK || IS_NETCOREAPP2
 		#region 安全转换
 		/// <summary>
-		/// 将str转小写，str为null或culture为null时返回nullValue
+		/// 使用<paramref name="culture"/>将<paramref name="str"/>转小写，<paramref name="str"/>或<paramref name="culture"/>为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="culture"></param>
@@ -289,7 +292,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 将str转大写，str为null或culture为null时返回nullValue
+		/// 使用<paramref name="culture"/>将<paramref name="str"/>转大写，<paramref name="str"/>或<paramref name="culture"/>为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="str"></param>
 		/// <param name="culture"></param>

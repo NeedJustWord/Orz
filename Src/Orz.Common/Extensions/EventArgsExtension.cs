@@ -4,7 +4,7 @@ using System.Threading;
 namespace Orz.Common.Extensions
 {
 	/// <summary>
-	/// EventArgs扩展方法，事件数据TEventArgs要求继承自<see cref="System.EventArgs"/>。
+	/// 事件数据TEventArgs的扩展方法，事件数据TEventArgs要求继承自<see cref="EventArgs"/>。
 	/// 对事件数据TEventArgs无要求的扩展方法在Orz.Common.Extensions.NoEventArgs命名空间下。
 	/// </summary>
 	public static class EventArgsExtension
@@ -37,7 +37,7 @@ namespace Orz.Common.Extensions
 namespace Orz.Common.Extensions.NoEventArgs
 {
 	/// <summary>
-	/// EventArgs扩展方法
+	/// 事件数据TEventArgs的扩展方法
 	/// </summary>
 	public static class EventArgsExtension
 	{

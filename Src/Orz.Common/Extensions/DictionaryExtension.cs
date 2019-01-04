@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Orz.Common.Extensions
 {
 	/// <summary>
-	/// Dictionary扩展方法
+	/// <see cref="Dictionary{TKey, TValue}"/>扩展方法
 	/// </summary>
 	public static class DictionaryExtension
 	{
@@ -17,6 +17,7 @@ namespace Orz.Common.Extensions
 		/// <param name="dict"></param>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static Dictionary<Tkey, TValue> AddSafe<Tkey, TValue>(this Dictionary<Tkey, TValue> dict, Tkey key, TValue value)
 		{
@@ -34,6 +35,7 @@ namespace Orz.Common.Extensions
 		/// <param name="dict"></param>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static Dictionary<Tkey, TValue> AddOrReplace<Tkey, TValue>(this Dictionary<Tkey, TValue> dict, Tkey key, TValue value)
 		{
@@ -44,13 +46,14 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 获取指定key的值，key不存在则返回默认值
+		/// 获取指定<paramref name="key"/>的值，<paramref name="key"/>不存在则返回默认值
 		/// </summary>
 		/// <typeparam name="Tkey"></typeparam>
 		/// <typeparam name="TValue"></typeparam>
 		/// <param name="dict"></param>
 		/// <param name="key"></param>
 		/// <param name="defaultValue"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static TValue GetValue<Tkey, TValue>(this Dictionary<Tkey, TValue> dict, Tkey key, TValue defaultValue = default(TValue))
 		{
@@ -66,7 +69,8 @@ namespace Orz.Common.Extensions
 		/// <typeparam name="TValue"></typeparam>
 		/// <param name="dict"></param>
 		/// <param name="keyValues"></param>
-		/// <param name="replaceExisted">是否替换已存在的Tkey</param>
+		/// <param name="replaceExisted">是否替换已存在的<typeparamref name="Tkey"/></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static Dictionary<Tkey, TValue> AddRange<Tkey, TValue>(this Dictionary<Tkey, TValue> dict, IEnumerable<KeyValuePair<Tkey, TValue>> keyValues, bool replaceExisted = false)
 		{
@@ -92,6 +96,7 @@ namespace Orz.Common.Extensions
 		/// <param name="dict"></param>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static IDictionary<Tkey, TValue> AddSafe<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, Tkey key, TValue value)
 		{
@@ -109,6 +114,7 @@ namespace Orz.Common.Extensions
 		/// <param name="dict"></param>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static IDictionary<Tkey, TValue> AddOrReplace<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, Tkey key, TValue value)
 		{
@@ -119,13 +125,14 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 获取指定key的值，key不存在则返回默认值
+		/// 获取指定<paramref name="key"/>的值，<paramref name="key"/>不存在则返回默认值
 		/// </summary>
 		/// <typeparam name="Tkey"></typeparam>
 		/// <typeparam name="TValue"></typeparam>
 		/// <param name="dict"></param>
 		/// <param name="key"></param>
 		/// <param name="defaultValue"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static TValue GetValue<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, Tkey key, TValue defaultValue = default(TValue))
 		{
@@ -141,7 +148,8 @@ namespace Orz.Common.Extensions
 		/// <typeparam name="TValue"></typeparam>
 		/// <param name="dict"></param>
 		/// <param name="keyValues"></param>
-		/// <param name="replaceExisted">是否替换已存在的Tkey</param>
+		/// <param name="replaceExisted">是否替换已存在的<typeparamref name="Tkey"/></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static IDictionary<Tkey, TValue> AddRange<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, IEnumerable<KeyValuePair<Tkey, TValue>> keyValues, bool replaceExisted = false)
 		{

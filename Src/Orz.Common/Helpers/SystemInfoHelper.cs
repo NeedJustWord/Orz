@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if IS_FRAMEWORK || IS_NETCOREAPP2
+using System;
+#endif
 
 namespace Orz.Common.Helpers
 {
@@ -7,7 +9,7 @@ namespace Orz.Common.Helpers
 	/// </summary>
 	public static class SystemInfoHelper
 	{
-#if !IS_NETCOREAPP1
+#if IS_FRAMEWORK || IS_NETCOREAPP2
 		/// <summary>
 		/// 判断是否在64位操作系统上运行
 		/// </summary>

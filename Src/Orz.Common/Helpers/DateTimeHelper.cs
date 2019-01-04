@@ -55,11 +55,7 @@ namespace Orz.Common.Helpers
 		private static DateTime GetUnixStartLocalTime()
 		{
 			return TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc, TimeZoneInfo.Local);
-			//#if HaveTimeZoneInfo
-			//			return TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc, TimeZoneInfo.Local);
-			//#else
-			//			return TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-			//#endif
+			//return TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
 		}
 		#endregion
 

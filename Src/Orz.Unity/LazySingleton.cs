@@ -5,9 +5,9 @@ namespace Orz.Unity
 	/// <summary>
 	/// 具有延迟加载特性的泛型单例类
 	/// </summary>
-	/// <typeparam name="T">要求具有公共的无参构造函数</typeparam>
+	/// <typeparam name="T">要求是类且具有公共的无参构造函数</typeparam>
 	/// <remarks>从Orz.Common.LazySingleton复制过来</remarks>
-	public sealed class LazySingleton<T> where T : new()
+	public sealed class LazySingleton<T> where T : class, new()
 	{
 		/// <summary>
 		/// 静态延迟加载特性

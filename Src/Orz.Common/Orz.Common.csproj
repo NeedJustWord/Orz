@@ -26,6 +26,10 @@
     <DefineConstants>IS_NETCOREAPP1</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp2.2' or '$(TargetFramework)'=='netcoreapp2.1' or '$(TargetFramework)'=='netcoreapp2.0'">
+    <DefineConstants>IS_NETCOREAPP2</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>

@@ -4,7 +4,7 @@ using System.Reflection;
 namespace Orz.Common.Extensions
 {
 	/// <summary>
-	/// FieldInfo扩展方法
+	/// <see cref="FieldInfo"/>扩展方法
 	/// </summary>
 	public static class FieldInfoExtension
 	{

@@ -8,17 +8,18 @@ namespace Orz.Common.Helpers
 	/// </summary>
 	public static class XmlHelper
 	{
+		#region 序列化
 		/// <summary>
 		/// 将实例序列化成xml字符串
 		/// </summary>
-		/// <param name="graph"></param>
+		/// <param name="obj"></param>
 		/// <returns></returns>
-		public static string SerializeObject(object graph)
+		public static string SerializeObject(object obj)
 		{
 			using (StringWriter stringWriter = new StringWriter())
 			{
-				XmlSerializer xmlSerializer = new XmlSerializer(graph.GetType());
-				xmlSerializer.Serialize(stringWriter, graph);
+				XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
+				xmlSerializer.Serialize(stringWriter, obj);
 				stringWriter.Flush();
 				return stringWriter.ToString();
 			}
@@ -27,29 +28,31 @@ namespace Orz.Common.Helpers
 		/// <summary>
 		/// 将实例序列化成xml文件
 		/// </summary>
-		/// <param name="graph"></param>
+		/// <param name="obj"></param>
 		/// <param name="path"></param>
 		/// <returns></returns>
-		public static bool SerializeObjectToFile(object graph, string path)
+		public static bool SerializeObjectToFile(object obj, string path)
 		{
 			using (FileStream fileStream = new FileStream(path, FileMode.Create))
 			{
-				XmlSerializer xmlSerializer = new XmlSerializer(graph.GetType());
-				xmlSerializer.Serialize(fileStream, graph);
+				XmlSerializer xmlSerializer = new XmlSerializer(obj.GetType());
+				xmlSerializer.Serialize(fileStream, obj);
 				fileStream.Flush();
 				return true;
 			}
 		}
+		#endregion
 
+		#region 泛型反序列化
 		/// <summary>
 		/// 将xml字符串反序列化成实例
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="serializedGraph"></param>
+		/// <param name="xml"></param>
 		/// <returns></returns>
-		public static T DeserializeObject<T>(string serializedGraph)
+		public static T DeserializeObject<T>(string xml)
 		{
-			using (StreamReader streamReader = new StreamReader(serializedGraph))
+			using (StreamReader streamReader = new StreamReader(xml))
 			{
 				XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
 				return (T)xmlSerializer.Deserialize(streamReader);
@@ -73,5 +76,6 @@ namespace Orz.Common.Helpers
 				return (T)xmlSerializer.Deserialize(fileStream);
 			}
 		}
+		#endregion
 	}
 }

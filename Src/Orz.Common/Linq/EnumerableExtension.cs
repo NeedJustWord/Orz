@@ -14,7 +14,7 @@ namespace System.Linq
 		/// <typeparam name="TKey"></typeparam>
 		/// <typeparam name="TValue"></typeparam>
 		/// <param name="keyValues"></param>
-		/// <param name="replaceExisted">是否替换已存在的Tkey</param>
+		/// <param name="replaceExisted">是否替换已存在的<typeparamref name="TKey"/></param>
 		/// <param name="comparer"></param>
 		/// <returns></returns>
 		public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> keyValues, bool replaceExisted = false, IEqualityComparer<TKey> comparer = null)

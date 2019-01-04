@@ -36,7 +36,7 @@ namespace Orz.Common.Threading
 		/// <summary>
 		/// 等待结果，成功返回true，失败或超时返回false
 		/// </summary>
-		/// <param name="key">key</param>
+		/// <param name="key"><paramref name="key"/></param>
 		/// <param name="timeout">等待时间</param>
 		/// <param name="result">结果</param>
 		/// <returns></returns>
@@ -66,7 +66,7 @@ namespace Orz.Common.Threading
 		/// <summary>
 		/// 等待结果，成功返回true，失败或超时返回false
 		/// </summary>
-		/// <param name="key">key</param>
+		/// <param name="key"><paramref name="key"/></param>
 		/// <param name="millisecondsTimeout">等待毫秒数，-1表示无限等待</param>
 		/// <param name="result">结果</param>
 		/// <returns></returns>
@@ -96,7 +96,7 @@ namespace Orz.Common.Threading
 		/// <summary>
 		/// 提交结果
 		/// </summary>
-		/// <param name="key">key</param>
+		/// <param name="key"><paramref name="key"/></param>
 		/// <param name="result">结果</param>
 		public void CommmitResult(string key, T result)
 		{
@@ -109,9 +109,9 @@ namespace Orz.Common.Threading
 		}
 
 		/// <summary>
-		/// 取消指定key的等待
+		/// 取消指定<paramref name="key"/>的等待
 		/// </summary>
-		/// <param name="key"></param>
+		/// <param name="key"><paramref name="key"/></param>
 		public void Cancel(string key)
 		{
 			key = key ?? "";

@@ -10,7 +10,7 @@ namespace Orz.Common.Extensions
 	{
 		#region 数量
 		/// <summary>
-		/// 获取集合的数量，为null时返回nullValue
+		/// 获取集合的数量，为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="collection"></param>
@@ -22,7 +22,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 获取集合的数量，为null时返回nullValue
+		/// 获取集合的数量，为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="collection"></param>
 		/// <param name="nullValue"></param>

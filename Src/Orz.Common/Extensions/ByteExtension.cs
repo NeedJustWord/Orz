@@ -5,7 +5,7 @@ using System.Text;
 namespace Orz.Common.Extensions
 {
 	/// <summary>
-	/// Byte扩展方法
+	/// <see cref="byte"/>扩展方法
 	/// </summary>
 	public static class ByteExtension
 	{
@@ -48,7 +48,7 @@ namespace Orz.Common.Extensions
 
 		#region 位运算
 		/// <summary>
-		/// 判断第index位是否为1
+		/// 判断第<paramref name="index"/>位是否为1
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="index">0-7，从右数起</param>
@@ -59,7 +59,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 判断第index位是否为0
+		/// 判断第<paramref name="index"/>位是否为0
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="index">0-7，从右数起</param>
@@ -70,7 +70,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 将第index位设为1
+		/// 将第<paramref name="index"/>位设为1
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="index">0-7，从右数起</param>
@@ -82,7 +82,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 将第index位设为0
+		/// 将第<paramref name="index"/>位设为0
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="index">0-7，从右数起</param>
@@ -94,7 +94,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 将第index位取反
+		/// 将第<paramref name="index"/>位取反
 		/// </summary>
 		/// <param name="value"></param>
 		/// <param name="index">0-7，从右数起</param>

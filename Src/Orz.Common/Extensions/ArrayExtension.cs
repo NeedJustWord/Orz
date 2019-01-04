@@ -4,13 +4,13 @@ using System.Collections.Generic;
 namespace Orz.Common.Extensions
 {
 	/// <summary>
-	/// Array扩展方法
+	/// <see cref="Array"/>扩展方法
 	/// </summary>
 	public static class ArrayExtension
 	{
 		#region 元素总数
 		/// <summary>
-		/// 获取Array的所有维数中元素的总数，为null时返回nullValue
+		/// 获取<paramref name="array"/>的所有维数中元素的总数，为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="array"></param>
 		/// <param name="nullValue"></param>
@@ -23,7 +23,7 @@ namespace Orz.Common.Extensions
 
 		#region 为空判断
 		/// <summary>
-		/// 是否为空数组，null不算空数组
+		/// 判断是否为空数组，null不算空数组
 		/// </summary>
 		/// <param name="array"></param>
 		/// <returns></returns>
@@ -33,7 +33,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 是否为null或空数组
+		/// 判断是否为null或空数组
 		/// </summary>
 		/// <param name="array"></param>
 		/// <returns></returns>
@@ -45,7 +45,7 @@ namespace Orz.Common.Extensions
 
 		#region 范围判断
 		/// <summary>
-		/// 判断index是否在数组范围内
+		/// 判断<paramref name="index"/>是否在数组范围内
 		/// </summary>
 		/// <param name="array"></param>
 		/// <param name="index"></param>
@@ -56,7 +56,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 判断在array中指定维数dimension的指定索引index是否存在
+		/// 判断在<paramref name="array"/>中指定维数<paramref name="dimension"/>的指定索引<paramref name="index"/>是否存在
 		/// </summary>
 		/// <param name="array"></param>
 		/// <param name="dimension"></param>
@@ -128,8 +128,8 @@ namespace Orz.Common.Extensions
 
 		#region Combine
 		/// <summary>
-		/// 合并两个数组并返回合并后的新数组，combineWith在arrayToCombine前面。
-		/// 如果combineWith和arrayToCombine都为null则返回一个空数组。
+		/// 合并两个数组并返回合并后的新数组，<paramref name="combineWith"/>在<paramref name="arrayToCombine"/>前面。
+		/// 如果<paramref name="combineWith"/>和<paramref name="arrayToCombine"/>都为null则返回一个空数组。
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="combineWith"></param>
@@ -169,10 +169,10 @@ namespace Orz.Common.Extensions
 		/// <param name="array"></param>
 		/// <param name="index">起始下标</param>
 		/// <param name="length">复制长度</param>
-		/// <param name="padToLength">长度不足时是否填充默认值来达到指定的总长度length，默认不填充</param>
-		/// <exception cref="ArgumentNullException">array为null</exception>
-		/// <exception cref="ArgumentOutOfRangeException">index超出array的下标范围</exception>
-		/// <exception cref="ArgumentException">length小于1</exception>
+		/// <param name="padToLength">长度不足时是否填充默认值来达到指定的总长度<paramref name="length"/>，默认不填充</param>
+		/// <exception cref="ArgumentNullException"><paramref name="array"/>为null</exception>
+		/// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/>超出<paramref name="array"/>的下标范围</exception>
+		/// <exception cref="ArgumentException"><paramref name="length"/>小于1</exception>
 		/// <returns></returns>
 		public static T[] BlockCopy<T>(this T[] array, int index, int length, bool padToLength = false)
 		{
@@ -195,12 +195,12 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 每count个元素复制成一个数组，返回数组集合
+		/// 每<paramref name="count"/>个元素复制成一个数组，返回数组集合
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="array"></param>
 		/// <param name="count">要求大于0</param>
-		/// <param name="padToLength">剩余元素个数不足时是否填充默认值来达到指定的总长度count，默认不填充</param>
+		/// <param name="padToLength">剩余元素个数不足时是否填充默认值来达到指定的总长度<paramref name="count"/>，默认不填充</param>
 		/// <returns></returns>
 		public static IEnumerable<T[]> BlockCopy<T>(this T[] array, int count, bool padToLength = false)
 		{
@@ -214,9 +214,9 @@ namespace Orz.Common.Extensions
 		}
 		#endregion
 
-#if !IS_NETCOREAPP1
+#if IS_FRAMEWORK || IS_NETCOREAPP2
 		/// <summary>
-		/// 获取Array的所有维数中元素的总数，为null时返回nullValue
+		/// 获取<paramref name="array"/>的所有维数中元素的总数，为null时返回<paramref name="nullValue"/>
 		/// </summary>
 		/// <param name="array"></param>
 		/// <param name="nullValue"></param>
@@ -227,7 +227,7 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
-		/// 判断index是否在数组范围内
+		/// 判断<paramref name="index"/>是否在数组范围内
 		/// </summary>
 		/// <param name="array"></param>
 		/// <param name="index"></param>

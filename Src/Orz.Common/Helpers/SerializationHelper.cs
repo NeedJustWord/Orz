@@ -22,8 +22,8 @@ namespace Orz.Common.Helpers
 		/// </summary>
 		/// <param name="graph"></param>
 		/// <param name="formatterType"></param>
-		/// <exception cref="ArgumentNullException">graph为null</exception>
-		/// <exception cref="NotSupportedException"></exception>
+		/// <exception cref="ArgumentNullException"><paramref name="graph"/>为null</exception>
+		/// <exception cref="NotSupportedException"><paramref name="formatterType"/>为不支持的序列化类型</exception>
 		/// <returns></returns>
 		public static string SerializeObject(object graph, SerializationFormatterType formatterType)
 		{
@@ -47,8 +47,8 @@ namespace Orz.Common.Helpers
 		/// <param name="graph"></param>
 		/// <param name="formatterType"></param>
 		/// <param name="path"></param>
-		/// <exception cref="ArgumentNullException">graph为null</exception>
-		/// <exception cref="NotSupportedException"></exception>
+		/// <exception cref="ArgumentNullException"><paramref name="graph"/>为null</exception>
+		/// <exception cref="NotSupportedException"><paramref name="formatterType"/>为不支持的序列化类型</exception>
 		/// <returns></returns>
 		public static bool SerializeObjectToFile(object graph, SerializationFormatterType formatterType, string path)
 		{
@@ -73,8 +73,8 @@ namespace Orz.Common.Helpers
 		/// <param name="serializedGraph"></param>
 		/// <param name="formatterType"></param>
 		/// <param name="binder"></param>
-		/// <exception cref="ArgumentException">serializedGraph为null或空白字符串</exception>
-		/// <exception cref="NotSupportedException"></exception>
+		/// <exception cref="ArgumentException"><paramref name="serializedGraph"/>为null或空白字符串</exception>
+		/// <exception cref="NotSupportedException"><paramref name="formatterType"/>为不支持的序列化类型</exception>
 		/// <returns></returns>
 		public static T DeserializeObject<T>(string serializedGraph, SerializationFormatterType formatterType, SerializationBinder binder = null)
 		{
@@ -101,7 +101,7 @@ namespace Orz.Common.Helpers
 		/// <param name="formatterType"></param>
 		/// <param name="binder"></param>
 		/// <exception cref="FileNotFoundException">文件不存在</exception>
-		/// <exception cref="NotSupportedException"></exception>
+		/// <exception cref="NotSupportedException"><paramref name="formatterType"/>为不支持的序列化类型</exception>
 		/// <returns></returns>
 		public static T DeserializeObjectFromFile<T>(string path, SerializationFormatterType formatterType, SerializationBinder binder = null)
 		{
@@ -124,7 +124,7 @@ namespace Orz.Common.Helpers
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="graph"></param>
-		/// <exception cref="ArgumentNullException">graph为null</exception>
+		/// <exception cref="ArgumentNullException"><paramref name="graph"/>为null</exception>
 		/// <returns></returns>
 		public static T CloneObject<T>(T graph)
 		{
@@ -145,7 +145,7 @@ namespace Orz.Common.Helpers
 		/// 
 		/// </summary>
 		/// <param name="formatterType"></param>
-		/// <exception cref="NotSupportedException">不支持的序列化类型</exception>
+		/// <exception cref="NotSupportedException"><paramref name="formatterType"/>为不支持的序列化类型</exception>
 		/// <returns></returns>
 		private static IFormatter GetFormatter(SerializationFormatterType formatterType)
 		{

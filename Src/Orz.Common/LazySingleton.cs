@@ -5,8 +5,8 @@ namespace Orz.Common
 	/// <summary>
 	/// 具有延迟加载特性的泛型单例类
 	/// </summary>
-	/// <typeparam name="T">要求具有公共的无参构造函数</typeparam>
-	public sealed class LazySingleton<T> where T : new()
+	/// <typeparam name="T">要求是类且具有公共的无参构造函数</typeparam>
+	public sealed class LazySingleton<T> where T : class, new()
 	{
 		/// <summary>
 		/// 静态延迟加载特性

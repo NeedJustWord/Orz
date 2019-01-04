@@ -17,7 +17,7 @@ namespace Microsoft.Practices.Unity.Configuration
 		/// <param name="configFilename">配置文件的相对路径(相对当前工作目录)或绝对路径</param>
 		/// <param name="sectionName"></param>
 		/// <param name="containerName"></param>
-		/// <exception cref="ArgumentNullException">container为null</exception>
+		/// <exception cref="ArgumentNullException"><paramref name="container"/>为null</exception>
 		/// <returns></returns>
 		public static IUnityContainer LoadConfiguration(this IUnityContainer container, string configFilename, string sectionName, string containerName)
 		{
