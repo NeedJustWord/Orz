@@ -13,28 +13,6 @@ namespace Orz.Common.Extensions
 	{
 		#region null、空串、空白字符串
 
-		#region IsNull、IsNotNull
-		/// <summary>
-		/// 是否为null
-		/// </summary>
-		/// <param name="str"></param>
-		/// <returns></returns>
-		public static bool IsNull(this string str)
-		{
-			return str == null;
-		}
-
-		/// <summary>
-		/// 是否不为null
-		/// </summary>
-		/// <param name="str"></param>
-		/// <returns></returns>
-		public static bool IsNotNull(this string str)
-		{
-			return str != null;
-		}
-		#endregion
-
 		#region IsNullOrEmpty、IsNotNullAndEmpty
 		/// <summary>
 		/// 是否为null或空串
@@ -79,18 +57,7 @@ namespace Orz.Common.Extensions
 		}
 		#endregion
 
-		#region IfNull、IfNullOrEmpty、IfNullOrWhiteSpace
-		/// <summary>
-		/// 如果为null，则返回<paramref name="defaultValue"/>，否则返回<paramref name="str"/>
-		/// </summary>
-		/// <param name="str"></param>
-		/// <param name="defaultValue"></param>
-		/// <returns></returns>
-		public static string IfNull(this string str, string defaultValue)
-		{
-			return str ?? defaultValue;
-		}
-
+		#region IfNullOrEmpty、IfNullOrWhiteSpace
 		/// <summary>
 		/// 如果为null或空串，则返回<paramref name="defaultValue"/>，否则返回<paramref name="str"/>
 		/// </summary>

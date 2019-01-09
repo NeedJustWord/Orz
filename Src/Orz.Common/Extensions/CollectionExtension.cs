@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Orz.Common.Extensions
 {
 	/// <summary>
-	/// 
+	/// <see cref="ICollection"/>和<see cref="ICollection{T}"/>的扩展方法
 	/// </summary>
 	public static class CollectionExtension
 	{
@@ -34,40 +34,3 @@ namespace Orz.Common.Extensions
 		#endregion
 	}
 }
-
-#if IS_FRAMEWORK || IS_NETCOREAPP1
-namespace System.Collections.Generic
-{
-	/// <summary>
-	/// 
-	/// </summary>
-	public static class CollectionExtension
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <typeparam name="TKey"></typeparam>
-		/// <typeparam name="TValue"></typeparam>
-		/// <param name="dictionary"></param>
-		/// <param name="key"></param>
-		/// <param name="value"></param>
-		/// <returns></returns>
-		public static bool Remove<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, out TValue value)
-		{
-			if (dictionary == null)
-			{
-				throw new ArgumentNullException(nameof(dictionary));
-			}
-
-			if (dictionary.TryGetValue(key, out value))
-			{
-				dictionary.Remove(key);
-				return true;
-			}
-
-			value = default(TValue);
-			return false;
-		}
-	}
-}
-#endif

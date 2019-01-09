@@ -59,10 +59,10 @@ namespace Orz.Common.Extensions
 		/// 判断在<paramref name="array"/>中指定维数<paramref name="dimension"/>的指定索引<paramref name="index"/>是否存在
 		/// </summary>
 		/// <param name="array"></param>
-		/// <param name="dimension"></param>
 		/// <param name="index"></param>
+		/// <param name="dimension"></param>
 		/// <returns></returns>
-		public static bool WithinIndex(this Array array, int dimension, int index)
+		public static bool WithinIndex(this Array array, int index, int dimension = 0)
 		{
 			return array != null && dimension > -1 && dimension < array.Rank && index >= array.GetLowerBound(dimension) && index <= array.GetUpperBound(dimension);
 		}
@@ -103,9 +103,9 @@ namespace Orz.Common.Extensions
 		/// 将指定索引的值设置成默认值
 		/// </summary>
 		/// <param name="array"></param>
-		/// <param name="index"></param>
+		/// <param name="index">索引，从0开始</param>
 		/// <returns></returns>
-		public static Array ClearAt(this Array array, int index)
+		public static Array ClearAtIndex(this Array array, int index)
 		{
 			if (array.WithinIndex(index)) Array.Clear(array, index, 1);
 			return array;
@@ -116,13 +116,39 @@ namespace Orz.Common.Extensions
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="array"></param>
-		/// <param name="index"></param>
+		/// <param name="index">索引，从0开始</param>
 		/// <param name="defaultValue"></param>
 		/// <returns></returns>
-		public static T[] ClearAt<T>(this T[] array, int index, T defaultValue = default(T))
+		public static T[] ClearAtIndex<T>(this T[] array, int index, T defaultValue = default(T))
 		{
 			if (array.WithinIndex(index)) array[index] = defaultValue;
 			return array;
+		}
+
+		/// <summary>
+		/// 将指定位置的值设置成默认值
+		/// </summary>
+		/// <param name="array"></param>
+		/// <param name="position">位置，从1开始</param>
+		/// <returns></returns>
+		public static Array ClearAtPosition(this Array array, int position)
+		{
+			int index = position.GetArrayIndex();
+			return array.ClearAtIndex(index);
+		}
+
+		/// <summary>
+		/// 将指定位置的值设置成指定默认值
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="array"></param>
+		/// <param name="position">位置，从1开始</param>
+		/// <param name="defaultValue"></param>
+		/// <returns></returns>
+		public static T[] ClearAtPosition<T>(this T[] array, int position, T defaultValue = default(T))
+		{
+			int index = position.GetArrayIndex();
+			return array.ClearAtIndex(index, defaultValue);
 		}
 		#endregion
 

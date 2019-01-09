@@ -129,6 +129,21 @@ namespace Orz.Common.Extensions
 			if (encoding == null) encoding = Encoding.UTF8;
 			return encoding.GetString(bytes);
 		}
+
+		/// <summary>
+		/// 将字节数组的子数组转换成指定编码的字符串，<paramref name="bytes"/>为null时返回空串
+		/// </summary>
+		/// <param name="bytes"></param>
+		/// <param name="index">子数组开始索引</param>
+		/// <param name="count">子数组长度</param>
+		/// <param name="encoding">为null时使用UTF8编码</param>
+		/// <returns></returns>
+		public static string ToEncodingString(this byte[] bytes, int index, int count, Encoding encoding = null)
+		{
+			if (bytes == null) return string.Empty;
+			if (encoding == null) encoding = Encoding.UTF8;
+			return encoding.GetString(bytes, index, count);
+		}
 		#endregion
 	}
 }
