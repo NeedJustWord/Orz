@@ -14,13 +14,11 @@ namespace System.Collections.Generic
 		/// <param name="dictionary"></param>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dictionary"/>为null</exception>
 		/// <returns></returns>
 		public static bool Remove<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, out TValue value)
 		{
-			if (dictionary == null)
-			{
-				throw new ArgumentNullException(nameof(dictionary));
-			}
+			if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
 
 			if (dictionary.TryGetValue(key, out value))
 			{

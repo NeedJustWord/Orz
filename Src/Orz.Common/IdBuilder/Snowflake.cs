@@ -1,4 +1,5 @@
 ﻿using System;
+using Orz.Common.Helpers;
 
 namespace Orz.Common.IdBuilder
 {
@@ -85,6 +86,7 @@ namespace Orz.Common.IdBuilder
 		/// </summary>
 		/// <param name="dataCenterId">数据中心id</param>
 		/// <param name="machineId">机器标识id</param>
+		/// <exception cref="ArgumentOutOfRangeException"><paramref name="dataCenterId"/>或<paramref name="machineId"/>超出范围</exception>
 		public Snowflake(long dataCenterId, long machineId)
 		{
 			if (dataCenterId > MaxDataCenterId || dataCenterId < 0) throw new ArgumentOutOfRangeException(nameof(dataCenterId), $"{nameof(dataCenterId)}不能大于{MaxDataCenterId}或者小于0");
@@ -97,6 +99,7 @@ namespace Orz.Common.IdBuilder
 		/// <summary>
 		/// 获取唯一id
 		/// </summary>
+		/// <exception cref="Exception">时间戳比上一次生成id时的时间戳还小</exception>
 		/// <returns></returns>
 		public long GetNextId()
 		{
@@ -132,6 +135,7 @@ namespace Orz.Common.IdBuilder
 		/// <summary>
 		/// 获取唯一id字符串
 		/// </summary>
+		/// <exception cref="Exception">时间戳比上一次生成id时的时间戳还小</exception>
 		/// <returns></returns>
 		public string GetNextIdStr()
 		{
@@ -184,7 +188,7 @@ namespace Orz.Common.IdBuilder
 		/// <returns></returns>
 		private long GetTimeStamp()
 		{
-			return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+			return DateTimeHelper.UtcNowToUnixTimeMilliseconds();
 		}
 
 		/// <summary>

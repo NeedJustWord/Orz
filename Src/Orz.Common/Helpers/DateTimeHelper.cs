@@ -9,6 +9,42 @@ namespace Orz.Common.Helpers
 	{
 		#region 时间戳
 		/// <summary>
+		/// 获取UtcNow对应的Unix时间戳(秒格式)
+		/// </summary>
+		/// <returns></returns>
+		public static long UtcNowToUnixTimeSeconds()
+		{
+			return DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+		}
+
+		/// <summary>
+		/// 获取UtcNow对应的Unix时间戳(毫秒格式)
+		/// </summary>
+		/// <returns></returns>
+		public static long UtcNowToUnixTimeMilliseconds()
+		{
+			return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+		}
+
+		/// <summary>
+		/// 获取Now对应的Unix时间戳(秒格式)
+		/// </summary>
+		/// <returns></returns>
+		public static long NowToUnixTimeSeconds()
+		{
+			return DateTimeOffset.Now.ToUnixTimeSeconds();
+		}
+
+		/// <summary>
+		/// 获取Now对应的Unix时间戳(毫秒格式)
+		/// </summary>
+		/// <returns></returns>
+		public static long NowToUnixTimeMilliseconds()
+		{
+			return DateTimeOffset.Now.ToUnixTimeMilliseconds();
+		}
+
+		/// <summary>
 		/// Unix时间戳(秒格式)转换成DateTime
 		/// </summary>
 		/// <param name="seconds">秒</param>

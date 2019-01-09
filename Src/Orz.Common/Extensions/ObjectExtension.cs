@@ -45,9 +45,12 @@ namespace Orz.Common.Extensions
 		/// <typeparam name="T"></typeparam>
 		/// <param name="target"></param>
 		/// <param name="func"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="func"/>为null</exception>
 		/// <returns></returns>
 		public static T IfNull<T>(this T target, Func<T> func)
 		{
+			if (func == null) throw new ArgumentNullException(nameof(func));
+
 			return ReferenceEquals(target, null) ? func() : target;
 		}
 	}

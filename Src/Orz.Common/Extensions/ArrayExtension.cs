@@ -205,6 +205,7 @@ namespace Orz.Common.Extensions
 			if (array == null) throw new ArgumentNullException(nameof(array));
 			if (index < 0 || index >= array.Length) throw new ArgumentOutOfRangeException(nameof(index));
 			if (length < 1) throw new ArgumentException($"{nameof(length)}小于1");
+			//todo:要不要抛出index和length的异常
 
 			int subLength = length;
 			T[] result = null;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Orz.Common.Extensions;
 
 namespace Orz.Common.Threading
 {
@@ -47,15 +48,7 @@ namespace Orz.Common.Threading
 			WaitResultHandle<T> handle = null;
 			lock (lockObj)
 			{
-				if (dict.ContainsKey(key))
-				{
-					handle = dict[key];
-				}
-				else
-				{
-					handle = new WaitResultHandle<T>();
-					dict.Add(key, handle);
-				}
+				handle = dict.GetOrAdd(key, () => new WaitResultHandle<T>());
 			}
 
 			var flag = handle.WaitResult(timeout);
@@ -77,15 +70,7 @@ namespace Orz.Common.Threading
 			WaitResultHandle<T> handle = null;
 			lock (lockObj)
 			{
-				if (dict.ContainsKey(key))
-				{
-					handle = dict[key];
-				}
-				else
-				{
-					handle = new WaitResultHandle<T>();
-					dict.Add(key, handle);
-				}
+				handle = dict.GetOrAdd(key, () => new WaitResultHandle<T>());
 			}
 
 			var flag = handle.WaitResult(millisecondsTimeout);

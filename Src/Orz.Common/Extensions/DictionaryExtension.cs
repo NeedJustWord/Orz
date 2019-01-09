@@ -86,7 +86,7 @@ namespace Orz.Common.Extensions
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 
-			return dict.ContainsKey(key) ? dict[key] : defaultValue;
+			return dict.TryGetValue(key, out var value) ? value : defaultValue;
 		}
 
 		/// <summary>
@@ -103,8 +103,50 @@ namespace Orz.Common.Extensions
 		{
 			if (dict == null) throw new ArgumentNullException(nameof(dict));
 
-			if (dict.ContainsKey(key)) return dict[key];
+			if (dict.TryGetValue(key, out var value)) return value;
 			throw exception;
+		}
+
+		/// <summary>
+		/// 获取指定<paramref name="key"/>的值，<paramref name="key"/>不存在则添加<paramref name="key"/>和<paramref name="addValue"/>并返回添加后的<typeparamref name="TValue"/>
+		/// </summary>
+		/// <typeparam name="Tkey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="addValue"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
+		/// <returns></returns>
+		public static TValue GetOrAdd<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, Tkey key, TValue addValue)
+		{
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+
+			if (dict.TryGetValue(key, out var value)) return value;
+
+			dict[key] = addValue;
+			return addValue;
+		}
+
+		/// <summary>
+		/// 获取指定<paramref name="key"/>的值，<paramref name="key"/>不存在则添加<paramref name="key"/>和<paramref name="func"/>的返回值并返回添加后的<typeparamref name="TValue"/>
+		/// </summary>
+		/// <typeparam name="Tkey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="func"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>或<paramref name="func"/>为null</exception>
+		/// <returns></returns>
+		public static TValue GetOrAdd<Tkey, TValue>(this IDictionary<Tkey, TValue> dict, Tkey key, Func<TValue> func)
+		{
+			if (dict == null) throw new ArgumentNullException(nameof(dict));
+			if (func == null) throw new ArgumentNullException(nameof(func));
+
+			if (dict.TryGetValue(key, out var value)) return value;
+
+			var addValue = func();
+			dict[key] = addValue;
+			return addValue;
 		}
 		#endregion
 
@@ -116,6 +158,7 @@ namespace Orz.Common.Extensions
 		/// <typeparam name="TValue"></typeparam>
 		/// <param name="dict"></param>
 		/// <param name="comparer"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static IDictionary<TKey, TValue> Sort<TKey, TValue>(this IDictionary<TKey, TValue> dict, IComparer<TKey> comparer = null)
 		{
@@ -130,6 +173,7 @@ namespace Orz.Common.Extensions
 		/// <typeparam name="TKey"></typeparam>
 		/// <typeparam name="TValue"></typeparam>
 		/// <param name="dict"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="dict"/>为null</exception>
 		/// <returns></returns>
 		public static IDictionary<TKey, TValue> SortByValue<TKey, TValue>(this IDictionary<TKey, TValue> dict)
 		{
