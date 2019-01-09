@@ -29,7 +29,7 @@ namespace Orz.Common.Helpers
 		/// </summary>
 		/// <typeparam name="T">序列化类型</typeparam>
 		/// <param name="value">序列化实例</param>
-		/// <param name="path">文件路径</param>
+		/// <param name="path">json文件路径</param>
 		/// <param name="dateFormatString">时间的格式化字符串，为null表示使用默认的格式化字符串</param>
 		/// <param name="encoding">为null时使用UTF8编码</param>
 		/// <returns></returns>
@@ -77,11 +77,11 @@ namespace Orz.Common.Helpers
 		/// <param name="path">json文件路径</param>
 		/// <param name="dateFormatString">时间的格式化字符串，为null表示使用默认的格式化字符串</param>
 		/// <param name="encoding">为null时使用UTF8编码</param>
-		/// <exception cref="FileNotFoundException">文件不存在</exception>
+		/// <exception cref="FileNotFoundException"><paramref name="path"/>指定的文件不存在</exception>
 		/// <returns></returns>
 		public static T DeserializeObjectFromFile<T>(string path, string dateFormatString = DateTimeFormatString.DateTimeStringUsual, Encoding encoding = null)
 		{
-			if (!File.Exists(path)) throw new FileNotFoundException(nameof(path));
+			if (!File.Exists(path)) throw new FileNotFoundException($"{nameof(path)}指定的文件不存在", path);
 
 			var json = File.ReadAllText(path, encoding ?? Encoding.UTF8);
 			return DeserializeObject<T>(json, dateFormatString);

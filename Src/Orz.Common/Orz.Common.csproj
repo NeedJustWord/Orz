@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net47' or '$(TargetFramework)'=='net46' or '$(TargetFramework)'=='net45'">
-    <DefineConstants>IS_FRAMEWORK</DefineConstants>
+    <DefineConstants>IS_FRAMEWORK;HAVE_IFORMATTER</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp1.1' or '$(TargetFramework)'=='netcoreapp1.0'">
@@ -27,7 +27,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp2.2' or '$(TargetFramework)'=='netcoreapp2.1' or '$(TargetFramework)'=='netcoreapp2.0'">
-    <DefineConstants>IS_NETCOREAPP2</DefineConstants>
+    <DefineConstants>IS_NETCOREAPP2;HAVE_IFORMATTER</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,6 +36,10 @@
 
   <ItemGroup Condition="'$(TargetFramework)'=='net47' or '$(TargetFramework)'=='net46' or '$(TargetFramework)'=='net45'">
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp1.1' or '$(TargetFramework)'=='netcoreapp1.0'">
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

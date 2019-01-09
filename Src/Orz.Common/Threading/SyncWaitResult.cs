@@ -8,7 +8,7 @@ namespace Orz.Common.Threading
 	/// 多线程同步等待结果
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class SyncWaitResult<T> : IDisposable
+	public sealed class SyncWaitResult<T> : IDisposable
 	{
 		private Dictionary<string, WaitResultHandle<T>> dict;
 		private readonly object lockObj;

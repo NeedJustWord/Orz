@@ -7,7 +7,7 @@ namespace Orz.Common.Threading
 	/// 封装线程等待结果的对象
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class WaitResultHandle<T> : IDisposable
+	public sealed class WaitResultHandle<T> : IDisposable
 	{
 		private T result;
 		private bool isCommit;

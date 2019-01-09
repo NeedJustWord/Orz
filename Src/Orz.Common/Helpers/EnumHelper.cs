@@ -2,6 +2,10 @@
 using System.ComponentModel;
 using Orz.Common.Extensions;
 
+#if IS_NETCOREAPP1
+using System.Reflection;
+#endif
+
 namespace Orz.Common.Helpers
 {
 	/// <summary>
