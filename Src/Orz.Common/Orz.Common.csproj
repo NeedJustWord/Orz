@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!--<TargetFramework>net45</TargetFramework>-->
-    <!--<TargetFramework>net46</TargetFramework>-->
-    <!--<TargetFramework>net47</TargetFramework>-->
-    <!--<TargetFramework>netcoreapp1.0</TargetFramework>-->
-    <!--<TargetFramework>netcoreapp1.1</TargetFramework>-->
-    <!--<TargetFramework>netcoreapp2.0</TargetFramework>-->
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <!--<TargetFramework>netcoreapp2.2</TargetFramework>-->
+    <!--<TargetFrameworks>net45</TargetFrameworks>-->
+    <!--<TargetFrameworks>net46</TargetFrameworks>-->
+    <!--<TargetFrameworks>net47</TargetFrameworks>-->
+    <!--<TargetFrameworks>netcoreapp1.0</TargetFrameworks>-->
+    <!--<TargetFrameworks>netcoreapp1.1</TargetFrameworks>-->
+    <!--<TargetFrameworks>netcoreapp2.0</TargetFrameworks>-->
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+    <!--<TargetFrameworks>netcoreapp2.2</TargetFrameworks>-->
 
     <!--<TargetFrameworks>net47;net46;net45;</TargetFrameworks>-->
     <!--<TargetFrameworks>netcoreapp1.1;netcoreapp1.0;</TargetFrameworks>-->

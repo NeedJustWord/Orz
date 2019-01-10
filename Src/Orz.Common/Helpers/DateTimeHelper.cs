@@ -8,13 +8,16 @@ namespace Orz.Common.Helpers
 	public static class DateTimeHelper
 	{
 		#region 时间戳
+		private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+		#region UtcNow和Now的Unix时间戳
 		/// <summary>
 		/// 获取UtcNow对应的Unix时间戳(秒格式)
 		/// </summary>
 		/// <returns></returns>
 		public static long UtcNowToUnixTimeSeconds()
 		{
-			return DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+			return ToUnixTimeSeconds(DateTime.UtcNow);
 		}
 
 		/// <summary>
@@ -23,7 +26,7 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		public static long UtcNowToUnixTimeMilliseconds()
 		{
-			return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+			return ToUnixTimeMilliseconds(DateTime.UtcNow);
 		}
 
 		/// <summary>
@@ -32,7 +35,7 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		public static long NowToUnixTimeSeconds()
 		{
-			return DateTimeOffset.Now.ToUnixTimeSeconds();
+			return ToUnixTimeSeconds(DateTime.Now);
 		}
 
 		/// <summary>
@@ -41,58 +44,79 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		public static long NowToUnixTimeMilliseconds()
 		{
-			return DateTimeOffset.Now.ToUnixTimeMilliseconds();
+			return ToUnixTimeMilliseconds(DateTime.Now);
 		}
+		#endregion
 
+		#region DateTime与时间戳的转换
 		/// <summary>
 		/// Unix时间戳(秒格式)转换成DateTime
 		/// </summary>
 		/// <param name="seconds">秒</param>
+		/// <param name="dateTimeType">返回的时间类型，默认返回当地时间</param>
 		/// <returns></returns>
-		public static DateTime FromUnixTimeSeconds(double seconds)
+		public static DateTime FromUnixTimeSeconds(long seconds, DateTimeType dateTimeType = DateTimeType.Local)
 		{
-			return GetUnixStartLocalTime().AddSeconds(seconds);
+			return GetUnixStartDateTime(dateTimeType).AddSeconds(seconds);
 		}
 
 		/// <summary>
 		/// Unix时间戳(毫秒格式)转换成DateTime
 		/// </summary>
 		/// <param name="milliseconds">毫秒</param>
+		/// <param name="dateTimeType">返回的时间类型，默认返回当地时间</param>
 		/// <returns></returns>
-		public static DateTime FromUnixTimeMilliseconds(double milliseconds)
+		public static DateTime FromUnixTimeMilliseconds(long milliseconds, DateTimeType dateTimeType = DateTimeType.Local)
 		{
-			return GetUnixStartLocalTime().AddMilliseconds(milliseconds);
+			return GetUnixStartDateTime(dateTimeType).AddMilliseconds(milliseconds);
 		}
 
 		/// <summary>
 		/// DateTime转换成Unix时间戳(秒格式)
 		/// </summary>
 		/// <param name="time"></param>
+		/// <param name="unspecifiedAs"><paramref name="time"/>的Kind属性为Unspecified时当作的时间类型，默认当作当地时间</param>
 		/// <returns></returns>
-		public static double ToUnixTimeSeconds(DateTime time)
+		public static long ToUnixTimeSeconds(DateTime time, DateTimeType unspecifiedAs = DateTimeType.Local)
 		{
-			return (time - GetUnixStartLocalTime()).TotalSeconds;
+			return (long)(ToUtcDateTime(time, unspecifiedAs) - Jan1st1970).TotalSeconds;
 		}
 
 		/// <summary>
 		/// DateTime转换成Unix时间戳(毫秒格式)
 		/// </summary>
 		/// <param name="time"></param>
+		/// <param name="unspecifiedAs"><paramref name="time"/>的Kind属性为Unspecified时当作的时间类型，默认当作当地时间</param>
 		/// <returns></returns>
-		public static double ToUnixTimeMilliseconds(DateTime time)
+		public static long ToUnixTimeMilliseconds(DateTime time, DateTimeType unspecifiedAs = DateTimeType.Local)
 		{
-			return (time - GetUnixStartLocalTime()).TotalMilliseconds;
+			return (long)(ToUtcDateTime(time, unspecifiedAs) - Jan1st1970).TotalMilliseconds;
 		}
 
 		/// <summary>
-		/// 获取Unix时间戳开始时间对应的本地时间
+		/// 获取Unix开始时间
 		/// </summary>
+		/// <param name="dateTimeType">返回时间类型</param>
 		/// <returns></returns>
-		private static DateTime GetUnixStartLocalTime()
+		private static DateTime GetUnixStartDateTime(DateTimeType dateTimeType)
 		{
-			return TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc, TimeZoneInfo.Local);
-			//return TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+			return dateTimeType == DateTimeType.Utc ? Jan1st1970 : TimeZoneInfo.ConvertTime(Jan1st1970, TimeZoneInfo.Utc, TimeZoneInfo.Local);
 		}
+
+		/// <summary>
+		/// 将<paramref name="time"/>转换成Utc时间
+		/// </summary>
+		/// <param name="time">待转换时间</param>
+		/// <param name="unspecifiedAs"><paramref name="time"/>的Kind属性为Unspecified时当作的时间类型</param>
+		/// <returns></returns>
+		private static DateTime ToUtcDateTime(DateTime time, DateTimeType unspecifiedAs)
+		{
+			if (time.Kind == DateTimeKind.Utc || (time.Kind == DateTimeKind.Unspecified && unspecifiedAs == DateTimeType.Utc)) return time;
+
+			return TimeZoneInfo.ConvertTime(time, TimeZoneInfo.Local, TimeZoneInfo.Utc);
+		}
+		#endregion
+
 		#endregion
 
 		#region 时间操作
@@ -176,5 +200,20 @@ namespace Orz.Common.Helpers
 		/// 秒
 		/// </summary>
 		Second,
+	}
+
+	/// <summary>
+	/// 时间类型
+	/// </summary>
+	public enum DateTimeType
+	{
+		/// <summary>
+		/// Utc时间
+		/// </summary>
+		Utc = 1,
+		/// <summary>
+		/// 当地时间
+		/// </summary>
+		Local = 2,
 	}
 }
