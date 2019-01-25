@@ -27,12 +27,12 @@ namespace Orz.Common.Extensions
 		/// </summary>
 		/// <param name="bytes"></param>
 		/// <param name="toUpper">是否大写</param>
-		/// <param name="separator">分隔符，为null时表示用空格分隔</param>
+		/// <param name="separator">分隔符，为null时表示没有分隔符</param>
 		/// <returns></returns>
 		public static string ToHex(this IEnumerable<byte> bytes, bool toUpper = true, string separator = null)
 		{
 			if (bytes == null) return string.Empty;
-			if (separator == null) separator = " ";
+			if (separator == null) separator = "";
 			string format = toUpper ? "X2" : "x2";
 
 			StringBuilder sb = new StringBuilder();

@@ -14,4 +14,6 @@
 
 1. [dnpextensions](https://archive.codeplex.com/?p=dnpextensions)
 2. [CLR via C# 第四版]()
+3. [打造属于你的加密Helper类](https://www.cnblogs.com/rush/archive/2011/07/24/2115613.html)
+4. [.NET中的加密算法总结(自定义加密Helper类续)](https://www.cnblogs.com/rush/archive/2011/09/24/2189399.html)
 
