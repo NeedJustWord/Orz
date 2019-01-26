@@ -6,6 +6,9 @@ namespace Orz.Common.IdBuilder
 	/// <summary>
 	/// Twitter的Snowflake分布式ID生成算法
 	/// </summary>
+	/// <remarks>
+	/// https://github.com/twitter-archive/snowflake/blob/scala_28/src/main/scala/com/twitter/service/snowflake/IdWorker.scala
+	/// </remarks>
 	public sealed class Snowflake
 	{
 		#region const常量

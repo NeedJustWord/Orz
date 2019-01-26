@@ -13,8 +13,8 @@ namespace Orz.Common.Performance
 	/// 用法：先调用Initialize方法初始化和预热，再调用Run方法测试性能
 	/// </summary>
 	/// <remarks>
-	/// http://www.cnblogs.com/JeffreyZhao/archive/2009/03/10/codetimer.html
-	/// http://www.cnblogs.com/eaglet/archive/2009/03/10/1407791.html
+	/// https://www.cnblogs.com/JeffreyZhao/archive/2009/03/10/CodeTimer.html
+	/// https://www.cnblogs.com/eaglet/archive/2009/03/10/1407791.html
 	/// </remarks>
 	public static class CodeTimer
 	{

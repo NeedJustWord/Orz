@@ -9,6 +9,9 @@ namespace Orz.Common.Helpers
 	/// 加密辅助类
 	/// </summary>
 	/// <remarks>
+	/// https://www.cnblogs.com/rush/archive/2011/07/24/2115613.html
+	/// https://www.cnblogs.com/rush/archive/2011/09/24/2189399.html
+	/// 
 	/// HashAlgorithm：
 	/// https://docs.microsoft.com/zh-cn/dotnet/api/system.security.cryptography.hashalgorithm?view=netframework-4.7.2
 	/// SymmetricAlgorithm：
