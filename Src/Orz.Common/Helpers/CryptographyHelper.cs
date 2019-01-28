@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using Orz.Common.Extensions;
@@ -6,7 +7,7 @@ using Orz.Common.Extensions;
 namespace Orz.Common.Helpers
 {
 	/// <summary>
-	/// 加密辅助类
+	/// 通用加密辅助类
 	/// </summary>
 	/// <remarks>
 	/// https://www.cnblogs.com/rush/archive/2011/07/24/2115613.html
@@ -45,7 +46,7 @@ namespace Orz.Common.Helpers
 			return Activator.CreateInstance(type) as T;
 		}
 
-		#region 哈希加密
+		#region 哈希
 		/// <summary>
 		/// 创建MD5CryptoServiceProvider
 		/// </summary>
@@ -92,7 +93,7 @@ namespace Orz.Common.Helpers
 		}
 		#endregion
 
-		#region 对称加密
+		#region 对称
 		/// <summary>
 		/// 创建AesCryptoServiceProvider
 		/// </summary>
@@ -130,7 +131,7 @@ namespace Orz.Common.Helpers
 		}
 		#endregion
 
-		#region 非对称加密
+		#region 非对称
 
 		#region DSACryptoServiceProvider
 		/// <summary>
@@ -223,27 +224,112 @@ namespace Orz.Common.Helpers
 		#region 加密解密、签名校验
 
 		#region 哈希
+
+		#region Encrypt
 		/// <summary>
-		/// 文本哈希加密
+		/// 哈希加密
 		/// </summary>
-		/// <param name="hashAlgorithm">加密算法</param>
-		/// <param name="dataToHash">加密文本</param>
+		/// <param name="hashAlgorithm">哈希加密算法</param>
+		/// <param name="dataToHash">加密字节数组</param>
+		/// <param name="toUpper">是否转大写</param>
+		/// <returns></returns>
+		public static string Encrypt(HashAlgorithm hashAlgorithm, byte[] dataToHash, bool toUpper = true)
+		{
+			return hashAlgorithm.ComputeHash(dataToHash).ToHex(toUpper);
+		}
+
+		/// <summary>
+		/// 哈希加密
+		/// </summary>
+		/// <param name="hashAlgorithm">哈希加密算法</param>
+		/// <param name="dataToHash">加密字节数组</param>
+		/// <param name="offset">字节数组中的偏移量</param>
+		/// <param name="count">数组中用作数据的字节数</param>
+		/// <param name="toUpper">是否转大写</param>
+		/// <returns></returns>
+		public static string Encrypt(HashAlgorithm hashAlgorithm, byte[] dataToHash, int offset, int count, bool toUpper = true)
+		{
+			return hashAlgorithm.ComputeHash(dataToHash, offset, count).ToHex(toUpper);
+		}
+
+		/// <summary>
+		/// 哈希加密
+		/// </summary>
+		/// <param name="hashAlgorithm">哈希加密算法</param>
+		/// <param name="dataToHash">待加密文本</param>
 		/// <param name="encoding">加密时的文本编码，为null时使用<see cref="UTF8Encoding()"/>构建的实例</param>
 		/// <param name="toUpper">是否转大写</param>
 		/// <returns></returns>
 		public static string Encrypt(HashAlgorithm hashAlgorithm, string dataToHash, Encoding encoding = null, bool toUpper = true)
 		{
-			encoding = encoding ?? new UTF8Encoding();
-			byte[] data = encoding.GetBytes(dataToHash);
-			byte[] result = hashAlgorithm.ComputeHash(data);
-			return result.ToHex(toUpper);
+			if (encoding == null) encoding = new UTF8Encoding();
+			return Encrypt(hashAlgorithm, encoding.GetBytes(dataToHash), toUpper);
+		}
+
+		/// <summary>
+		/// 哈希加密
+		/// </summary>
+		/// <param name="hashAlgorithm">哈希加密算法</param>
+		/// <param name="dataToHash">待加密文本</param>
+		/// <param name="func">将<paramref name="dataToHash"/>转换成<see cref="byte"/>数组的函数</param>
+		/// <param name="toUpper">是否转大写</param>
+		/// <exception cref="ArgumentNullException"><paramref name="func"/>为null</exception>
+		/// <returns></returns>
+		public static string Encrypt(HashAlgorithm hashAlgorithm, string dataToHash, Func<string, byte[]> func, bool toUpper = true)
+		{
+			ThrowHelper.CheckArgumentNull(func, nameof(func));
+			return Encrypt(hashAlgorithm, func(dataToHash), toUpper);
+		}
+
+		/// <summary>
+		/// 哈希加密
+		/// </summary>
+		/// <param name="hashAlgorithm">哈希加密算法</param>
+		/// <param name="stream">待加密数据流</param>
+		/// <param name="toUpper">是否转大写</param>
+		/// <exception cref="ArgumentNullException"><paramref name="stream"/>为null</exception>
+		/// <returns></returns>
+		public static string Encrypt(HashAlgorithm hashAlgorithm, Stream stream, bool toUpper = true)
+		{
+			ThrowHelper.CheckArgumentNull(stream, nameof(stream));
+			return hashAlgorithm.ComputeHash(stream).ToHex(toUpper);
+		}
+		#endregion
+
+		#region IsHashMatch
+		/// <summary>
+		/// 文本哈希校验
+		/// </summary>
+		/// <param name="hashAlgorithm">加密算法</param>
+		/// <param name="hashedText">加密后的字符串</param>
+		/// <param name="unhashedBytes">加密前的字节数组</param>
+		/// <returns></returns>
+		public static bool IsHashMatch(HashAlgorithm hashAlgorithm, string hashedText, byte[] unhashedBytes)
+		{
+			string hashedTextToCompare = Encrypt(hashAlgorithm, unhashedBytes);
+			return string.Compare(hashedText, hashedTextToCompare, true) == 0;
 		}
 
 		/// <summary>
 		/// 文本哈希校验
 		/// </summary>
 		/// <param name="hashAlgorithm">加密算法</param>
-		/// <param name="hashedText">加密后的文本</param>
+		/// <param name="hashedText">加密后的字符串</param>
+		/// <param name="unhashedBytes">加密前的字节数组</param>
+		/// <param name="offset">字节数组中的偏移量</param>
+		/// <param name="count">数组中用作数据的字节数</param>
+		/// <returns></returns>
+		public static bool IsHashMatch(HashAlgorithm hashAlgorithm, string hashedText, byte[] unhashedBytes, int offset, int count)
+		{
+			string hashedTextToCompare = Encrypt(hashAlgorithm, unhashedBytes, offset, count);
+			return string.Compare(hashedText, hashedTextToCompare, true) == 0;
+		}
+
+		/// <summary>
+		/// 文本哈希校验
+		/// </summary>
+		/// <param name="hashAlgorithm">加密算法</param>
+		/// <param name="hashedText">加密后的字符串</param>
 		/// <param name="unhashedText">加密前的文本</param>
 		/// <param name="encoding">加密时的文本编码，为null时使用<see cref="UTF8Encoding()"/>构建的实例</param>
 		/// <returns></returns>
@@ -252,6 +338,35 @@ namespace Orz.Common.Helpers
 			string hashedTextToCompare = Encrypt(hashAlgorithm, unhashedText, encoding);
 			return string.Compare(hashedText, hashedTextToCompare, true) == 0;
 		}
+
+		/// <summary>
+		/// 文本哈希校验
+		/// </summary>
+		/// <param name="hashAlgorithm">加密算法</param>
+		/// <param name="hashedText">加密后的字符串</param>
+		/// <param name="unhashedText">加密前的文本</param>
+		/// <param name="func">将<paramref name="unhashedText"/>转换成<see cref="byte"/>数组的函数</param>
+		/// <returns></returns>
+		public static bool IsHashMatch(HashAlgorithm hashAlgorithm, string hashedText, string unhashedText, Func<string, byte[]> func)
+		{
+			string hashedTextToCompare = Encrypt(hashAlgorithm, unhashedText, func);
+			return string.Compare(hashedText, hashedTextToCompare, true) == 0;
+		}
+
+		/// <summary>
+		/// 文本哈希校验
+		/// </summary>
+		/// <param name="hashAlgorithm">加密算法</param>
+		/// <param name="hashedText">加密后的字符串</param>
+		/// <param name="unhashedStream">加密前的数据流</param>
+		/// <returns></returns>
+		public static bool IsHashMatch(HashAlgorithm hashAlgorithm, string hashedText, Stream unhashedStream)
+		{
+			string hashedTextToCompare = Encrypt(hashAlgorithm, unhashedStream);
+			return string.Compare(hashedText, hashedTextToCompare, true) == 0;
+		}
+		#endregion
+
 		#endregion
 
 		#region 对称
