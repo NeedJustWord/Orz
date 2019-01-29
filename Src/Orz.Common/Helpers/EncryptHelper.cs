@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace Orz.Common.Helpers
 {
@@ -16,7 +17,7 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		public static string Md5With32Bits(string dataToMd5, bool toUpper = true)
 		{
-			return CryptographyHelper.Encrypt(CryptographyHelper.CreateHashAlgoMd5(), dataToMd5, new UTF8Encoding(), toUpper);
+			return Encrypt(CryptographyHelper.CreateHashAlgoMd5(), dataToMd5, toUpper);
 		}
 
 		/// <summary>
@@ -55,6 +56,31 @@ namespace Orz.Common.Helpers
 		}
 		#endregion
 
+		#region Sha1
+		/// <summary>
+		/// 获取sha1加密字符串
+		/// </summary>
+		/// <param name="dataToSha1">待加密字符串</param>
+		/// <param name="toUpper">是否转大写</param>
+		/// <returns></returns>
+		public static string Sha1(string dataToSha1, bool toUpper = true)
+		{
+			return Encrypt(CryptographyHelper.CreateHashAlgoSha1(), dataToSha1, toUpper);
+		}
+
+		/// <summary>
+		/// sha1校验
+		/// </summary>
+		/// <param name="input">原始字符串</param>
+		/// <param name="sha1">sha1字符串</param>
+		/// <returns></returns>
+		public static bool IsSha1Match(string input, string sha1)
+		{
+			string sha1ToCompare = Sha1(input);
+			return string.Compare(sha1, sha1ToCompare, true) == 0;
+		}
+		#endregion
+
 		//public static string EncryptFile(HashAlgorithm hashAlgorithm, string filePath)
 		//{
 		//	Stream dataToHash = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -66,5 +92,10 @@ namespace Orz.Common.Helpers
 		//{
 		//	return string.Compare(EncryptFile(hashAlgorithm, filePath), hashedText, true) == 0;
 		//}
+
+		private static string Encrypt(HashAlgorithm hashAlgorithm, string dataToHash, bool toUpper)
+		{
+			return CryptographyHelper.Encrypt(hashAlgorithm, dataToHash, new UTF8Encoding(), toUpper);
+		}
 	}
 }
