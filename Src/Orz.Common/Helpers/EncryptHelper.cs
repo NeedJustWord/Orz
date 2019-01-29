@@ -81,6 +81,81 @@ namespace Orz.Common.Helpers
 		}
 		#endregion
 
+		#region Sha256
+		/// <summary>
+		/// 获取sha256加密字符串
+		/// </summary>
+		/// <param name="dataToSha256">待加密字符串</param>
+		/// <param name="toUpper">是否转大写</param>
+		/// <returns></returns>
+		public static string Sha256(string dataToSha256, bool toUpper = true)
+		{
+			return Encrypt(CryptographyHelper.CreateHashAlgoSha256(), dataToSha256, toUpper);
+		}
+
+		/// <summary>
+		/// sha256校验
+		/// </summary>
+		/// <param name="input">原始字符串</param>
+		/// <param name="sha256">sha256字符串</param>
+		/// <returns></returns>
+		public static bool IsSha256Match(string input, string sha256)
+		{
+			string sha256ToCompare = Sha256(input);
+			return string.Compare(sha256, sha256ToCompare, true) == 0;
+		}
+		#endregion
+
+		#region Sha384
+		/// <summary>
+		/// 获取sha384加密字符串
+		/// </summary>
+		/// <param name="dataToSha384">待加密字符串</param>
+		/// <param name="toUpper">是否转大写</param>
+		/// <returns></returns>
+		public static string Sha384(string dataToSha384, bool toUpper = true)
+		{
+			return Encrypt(CryptographyHelper.CreateHashAlgoSha384(), dataToSha384, toUpper);
+		}
+
+		/// <summary>
+		/// sha384校验
+		/// </summary>
+		/// <param name="input">原始字符串</param>
+		/// <param name="sha384">sha384字符串</param>
+		/// <returns></returns>
+		public static bool IsSha384Match(string input, string sha384)
+		{
+			string sha384ToCompare = Sha384(input);
+			return string.Compare(sha384, sha384ToCompare, true) == 0;
+		}
+		#endregion
+
+		#region Sha512
+		/// <summary>
+		/// 获取sha512加密字符串
+		/// </summary>
+		/// <param name="dataToSha512">待加密字符串</param>
+		/// <param name="toUpper">是否转大写</param>
+		/// <returns></returns>
+		public static string Sha512(string dataToSha512, bool toUpper = true)
+		{
+			return Encrypt(CryptographyHelper.CreateHashAlgoSha512(), dataToSha512, toUpper);
+		}
+
+		/// <summary>
+		/// sha512校验
+		/// </summary>
+		/// <param name="input">原始字符串</param>
+		/// <param name="sha512">sha512字符串</param>
+		/// <returns></returns>
+		public static bool IsSha512Match(string input, string sha512)
+		{
+			string sha512ToCompare = Sha512(input);
+			return string.Compare(sha512, sha512ToCompare, true) == 0;
+		}
+		#endregion
+
 		//public static string EncryptFile(HashAlgorithm hashAlgorithm, string filePath)
 		//{
 		//	Stream dataToHash = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
