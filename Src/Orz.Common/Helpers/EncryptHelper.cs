@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using Orz.Common.Extensions;
 
 namespace Orz.Common.Helpers
 {
@@ -17,7 +18,7 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		public static string Md5With32Bits(string dataToMd5, bool toUpper = true)
 		{
-			return Encrypt(CryptographyHelper.CreateHashAlgoMd5(), dataToMd5, toUpper);
+			return Encrypt(new MD5CryptoServiceProvider(), dataToMd5, toUpper);
 		}
 
 		/// <summary>
@@ -65,7 +66,7 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		public static string Sha1(string dataToSha1, bool toUpper = true)
 		{
-			return Encrypt(CryptographyHelper.CreateHashAlgoSha1(), dataToSha1, toUpper);
+			return Encrypt(new SHA1CryptoServiceProvider(), dataToSha1, toUpper);
 		}
 
 		/// <summary>
@@ -90,7 +91,7 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		public static string Sha256(string dataToSha256, bool toUpper = true)
 		{
-			return Encrypt(CryptographyHelper.CreateHashAlgoSha256(), dataToSha256, toUpper);
+			return Encrypt(new SHA256CryptoServiceProvider(), dataToSha256, toUpper);
 		}
 
 		/// <summary>
@@ -115,7 +116,7 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		public static string Sha384(string dataToSha384, bool toUpper = true)
 		{
-			return Encrypt(CryptographyHelper.CreateHashAlgoSha384(), dataToSha384, toUpper);
+			return Encrypt(new SHA384CryptoServiceProvider(), dataToSha384, toUpper);
 		}
 
 		/// <summary>
@@ -140,7 +141,7 @@ namespace Orz.Common.Helpers
 		/// <returns></returns>
 		public static string Sha512(string dataToSha512, bool toUpper = true)
 		{
-			return Encrypt(CryptographyHelper.CreateHashAlgoSha512(), dataToSha512, toUpper);
+			return Encrypt(new SHA512CryptoServiceProvider(), dataToSha512, toUpper);
 		}
 
 		/// <summary>
@@ -170,7 +171,7 @@ namespace Orz.Common.Helpers
 
 		private static string Encrypt(HashAlgorithm hashAlgorithm, string dataToHash, bool toUpper)
 		{
-			return CryptographyHelper.Encrypt(hashAlgorithm, dataToHash, new UTF8Encoding(), toUpper);
+			return hashAlgorithm.ComputeHash(new UTF8Encoding().GetBytes(dataToHash)).ToHex(toUpper);
 		}
 	}
 }
