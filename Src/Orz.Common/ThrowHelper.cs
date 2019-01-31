@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Orz.Common.Helpers
+namespace Orz.Common
 {
 	/// <summary>
 	/// 抛异常辅助类
