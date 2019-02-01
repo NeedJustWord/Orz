@@ -47,14 +47,24 @@ namespace System.Linq
 		/// <returns></returns>
 		public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
 		{
-			if (source != null && action != null)
+			if (source != null)
 			{
-				foreach (var item in source)
+				if (action == null)
 				{
-					action(item);
+					foreach (var item in source)
+					{
+						yield return item;
+					}
+				}
+				else
+				{
+					foreach (var item in source)
+					{
+						action(item);
+						yield return item;
+					}
 				}
 			}
-			return source;
 		}
 	}
 }

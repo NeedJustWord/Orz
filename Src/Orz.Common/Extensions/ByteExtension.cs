@@ -23,9 +23,39 @@ namespace Orz.Common.Extensions
 		}
 
 		/// <summary>
+		/// 将字节数组的子数组转换成十六进制的字符串，为null时返回空串
+		/// </summary>
+		/// <param name="bytes">字节数组</param>
+		/// <param name="index">子数组开始索引</param>
+		/// <param name="length">子数组长度</param>
+		/// <param name="toUpper">是否大写</param>
+		/// <param name="separator">分隔符，为null时表示没有分隔符</param>
+		/// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/>或<paramref name="length"/>超出<paramref name="bytes"/>的范围</exception>
+		/// <returns></returns>
+		public static string ToHex(this byte[] bytes, int index, int length, bool toUpper = true, string separator = null)
+		{
+			if (bytes == null) return string.Empty;
+
+			ThrowHelper.CheckArgumentOutOfRange(bytes, index, length, nameof(index), nameof(length), true);
+
+			if (separator == null) separator = "";
+			string format = toUpper ? "X2" : "x2";
+
+			StringBuilder sb = new StringBuilder();
+			int maxIndex = index + length;
+			for (int i = index; i < maxIndex; i++)
+			{
+				sb.Append(bytes[i].ToString(format) + separator);
+			}
+
+			if (sb.Length > 0 && separator.Length > 0) sb.Remove(sb.Length - separator.Length, separator.Length);
+			return sb.ToString();
+		}
+
+		/// <summary>
 		/// 将字节流转换成十六进制的字符串，为null时返回空串
 		/// </summary>
-		/// <param name="bytes"></param>
+		/// <param name="bytes">字节流</param>
 		/// <param name="toUpper">是否大写</param>
 		/// <param name="separator">分隔符，为null时表示没有分隔符</param>
 		/// <returns></returns>
