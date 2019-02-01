@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-#if IS_FRAMEWORK || IS_NETCOREAPP1
-using Orz.Common.Extensions;
-#endif
-
 namespace Orz.Common
 {
 	/// <summary>
