@@ -19,7 +19,7 @@ namespace Orz.Unity.Test
 		/// </summary>
 		static void RegisterType()
 		{
-			Console.WriteLine("RegisterType:");
+			Console.WriteLine("RegisterType:开始注册");
 
 			var orzUnity = LazySingleton<OrzUnity>.Instance;
 			orzUnity.RegisterType<IPhone, ApplePhone>();
@@ -35,7 +35,7 @@ namespace Orz.Unity.Test
 		/// </summary>
 		static void LoadDefaultConfigFile()
 		{
-			Console.WriteLine("LoadDefaultConfigFile:");
+			Console.WriteLine("LoadDefaultConfigFile:开始注册");
 
 			var orzUnity = LazySingleton<OrzUnity>.Instance;
 			orzUnity.LoadDefaultConfigFile();
@@ -48,7 +48,7 @@ namespace Orz.Unity.Test
 		/// </summary>
 		static void LoadConfigFile()
 		{
-			Console.WriteLine("LoadConfigFile:");
+			Console.WriteLine("LoadConfigFile:开始注册");
 
 			var orzUnity = LazySingleton<OrzUnity>.Instance;
 			orzUnity.LoadConfigFile();
@@ -58,7 +58,12 @@ namespace Orz.Unity.Test
 
 		static void Print()
 		{
+			Console.WriteLine();
+			Console.WriteLine("类型已注册，开始实例化");
 			var phone = LazySingleton<OrzUnity>.Instance.Resolve<IPhone>();
+
+			Console.WriteLine();
+			Console.WriteLine("类型已实例化，开始调用方法");
 			phone.Print();
 		}
 	}
