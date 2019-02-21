@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Consul;
 
 namespace Orz.Consul
@@ -20,6 +21,7 @@ namespace Orz.Consul
 		/// <param name="configAction"><see cref="ConsulClient"/>的配置方法</param>
 		public OrzConsulClient(Action<ConsulClientConfiguration> configAction)
 		{
+			if (configAction == null) throw new ArgumentNullException(nameof(configAction));
 			consulClient = new ConsulClient(configAction);
 		}
 
@@ -63,7 +65,8 @@ namespace Orz.Consul
 		/// <param name="tags"></param>
 		/// <param name="meta"></param>
 		/// <param name="ct"></param>
-		public void ServiceRegister(string serviceId, string serviceName, string serviceAddress, int servicePort, AgentServiceCheck check = null, AgentServiceCheck[] checks = null, bool enableTagOverride = false, string[] tags = null, IDictionary<string, string> meta = null, CancellationToken ct = default(CancellationToken))
+		/// <returns></returns>
+		public OrzConsulClient ServiceRegister(string serviceId, string serviceName, string serviceAddress, int servicePort, AgentServiceCheck check = null, AgentServiceCheck[] checks = null, bool enableTagOverride = false, string[] tags = null, IDictionary<string, string> meta = null, CancellationToken ct = default(CancellationToken))
 		{
 			var asr = new AgentServiceRegistration
 			{
@@ -77,7 +80,7 @@ namespace Orz.Consul
 				Tags = tags,
 				Meta = meta,
 			};
-			ServiceRegister(asr, ct);
+			return ServiceRegister(asr, ct);
 		}
 
 		/// <summary>
@@ -85,21 +88,65 @@ namespace Orz.Consul
 		/// </summary>
 		/// <param name="service">服务注册信息</param>
 		/// <param name="ct"></param>
-		public void ServiceRegister(AgentServiceRegistration service, CancellationToken ct = default(CancellationToken))
+		/// <returns></returns>
+		public OrzConsulClient ServiceRegister(AgentServiceRegistration service, CancellationToken ct = default(CancellationToken))
 		{
-			consulClient.Agent.ServiceRegister(service, ct).Wait();
+			if (service != null) consulClient.Agent.ServiceRegister(service, ct).Wait(ct);
+			return this;
+		}
+
+		/// <summary>
+		/// 批量注册服务
+		/// </summary>
+		/// <param name="services">服务注册信息集合</param>
+		/// <param name="ct"></param>
+		/// <returns></returns>
+		public OrzConsulClient ServiceRegister(IEnumerable<AgentServiceRegistration> services, CancellationToken ct = default(CancellationToken))
+		{
+			if (services != null)
+			{
+				List<Task> list = new List<Task>();
+				foreach (var service in services)
+				{
+					list.Add(consulClient.Agent.ServiceRegister(service, ct));
+				}
+				Task.WaitAll(list.ToArray(), ct);
+			}
+			return this;
 		}
 		#endregion
 
 		#region 注销服务
 		/// <summary>
-		/// 根据服务id注销服务
+		/// 注销服务
 		/// </summary>
 		/// <param name="serviceId">服务id</param>
 		/// <param name="ct"></param>
-		public void ServiceDeregister(string serviceId, CancellationToken ct = default(CancellationToken))
+		/// <returns></returns>
+		public OrzConsulClient ServiceDeregister(string serviceId, CancellationToken ct = default(CancellationToken))
 		{
-			consulClient.Agent.ServiceDeregister(serviceId, ct).Wait();
+			consulClient.Agent.ServiceDeregister(serviceId, ct).Wait(ct);
+			return this;
+		}
+
+		/// <summary>
+		/// 批量注销服务
+		/// </summary>
+		/// <param name="serviceIds">服务id集合</param>
+		/// <param name="ct"></param>
+		/// <returns></returns>
+		public OrzConsulClient ServiceDeregister(IEnumerable<string> serviceIds, CancellationToken ct = default(CancellationToken))
+		{
+			if (serviceIds != null)
+			{
+				List<Task> list = new List<Task>();
+				foreach (var serviceId in serviceIds)
+				{
+					list.Add(consulClient.Agent.ServiceDeregister(serviceId, ct));
+				}
+				Task.WaitAll(list.ToArray(), ct);
+			}
+			return this;
 		}
 		#endregion
 
