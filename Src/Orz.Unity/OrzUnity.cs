@@ -53,8 +53,8 @@ namespace Orz.Unity
 		/// <summary>
 		/// 注册类型
 		/// </summary>
-		/// <param name="from"></param>
-		/// <param name="to"></param>
+		/// <param name="from">父类或父接口</param>
+		/// <param name="to">子类</param>
 		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="lifetimeManager"></param>
 		/// <param name="injectionMembers"></param>
@@ -82,8 +82,8 @@ namespace Orz.Unity
 		/// <summary>
 		/// 注册类型
 		/// </summary>
-		/// <typeparam name="TFrom"></typeparam>
-		/// <typeparam name="TTo"></typeparam>
+		/// <typeparam name="TFrom">父类或父接口</typeparam>
+		/// <typeparam name="TTo">子类</typeparam>
 		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="lifetimeManager"></param>
 		/// <param name="injectionMembers"></param>
@@ -144,8 +144,8 @@ namespace Orz.Unity
 		/// <summary>
 		/// 注册单例类型
 		/// </summary>
-		/// <param name="from"></param>
-		/// <param name="to"></param>
+		/// <param name="from">父类或父接口</param>
+		/// <param name="to">子类</param>
 		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
@@ -171,8 +171,8 @@ namespace Orz.Unity
 		/// <summary>
 		/// 注册单例类型
 		/// </summary>
-		/// <typeparam name="TFrom"></typeparam>
-		/// <typeparam name="TTo"></typeparam>
+		/// <typeparam name="TFrom">父类或父接口</typeparam>
+		/// <typeparam name="TTo">子类</typeparam>
 		/// <param name="name">null和string.Empty表示默认注册(内部都是使用null)，否则表示命名注册</param>
 		/// <param name="injectionMembers"></param>
 		/// <returns></returns>
