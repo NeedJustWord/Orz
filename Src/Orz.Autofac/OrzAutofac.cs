@@ -34,6 +34,74 @@ namespace Orz.Autofac
 
 		#region 注册类型
 
+		#region Register
+		/// <summary>
+		/// 注册类型
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public OrzAutofac Register<T>(Func<IComponentContext, T> func, string name = null)
+		{
+			if (func == null) throw new ArgumentNullException(nameof(func));
+
+			if (name == null) ContainerBuilder.Register(func).AsSelf();
+			else ContainerBuilder.Register(func).Named<T>(name);
+			return this;
+		}
+
+		/// <summary>
+		/// 注册类型
+		/// </summary>
+		/// <typeparam name="TFrom">父类或父接口</typeparam>
+		/// <typeparam name="TTo">子类</typeparam>
+		/// <param name="func"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public OrzAutofac Register<TFrom, TTo>(Func<IComponentContext, TTo> func, string name = null) where TTo : TFrom
+		{
+			if (func == null) throw new ArgumentNullException(nameof(func));
+
+			if (name == null) ContainerBuilder.Register(func).As<TFrom>();
+			else ContainerBuilder.Register(func).Named<TFrom>(name);
+			return this;
+		}
+
+		/// <summary>
+		/// 注册类型
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public OrzAutofac Register<T>(Func<IComponentContext, IEnumerable<Parameter>, T> func, string name = null)
+		{
+			if (func == null) throw new ArgumentNullException(nameof(func));
+
+			if (name == null) ContainerBuilder.Register(func).AsSelf();
+			else ContainerBuilder.Register(func).Named<T>(name);
+			return this;
+		}
+
+		/// <summary>
+		/// 注册类型
+		/// </summary>
+		/// <typeparam name="TFrom">父类或父接口</typeparam>
+		/// <typeparam name="TTo">子类</typeparam>
+		/// <param name="func"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public OrzAutofac Register<TFrom, TTo>(Func<IComponentContext, IEnumerable<Parameter>, TTo> func, string name = null) where TTo : TFrom
+		{
+			if (func == null) throw new ArgumentNullException(nameof(func));
+
+			if (name == null) ContainerBuilder.Register(func).As<TFrom>();
+			else ContainerBuilder.Register(func).Named<TFrom>(name);
+			return this;
+		}
+		#endregion
+
 		#region RegisterType
 		/// <summary>
 		/// 注册类型
