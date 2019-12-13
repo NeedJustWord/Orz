@@ -1,6 +1,6 @@
 ﻿namespace Orz.Autofac.Interfaces
 {
-	public interface IHeadphone : IId
-	{
-	}
+    public interface IHeadphone : IId
+    {
+    }
 }

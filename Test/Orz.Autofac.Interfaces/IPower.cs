@@ -1,6 +1,6 @@
 ﻿namespace Orz.Autofac.Interfaces
 {
-	public interface IPower : IId
-	{
-	}
+    public interface IPower : IId
+    {
+    }
 }

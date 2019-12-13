@@ -1,6 +1,6 @@
 ﻿namespace Orz.Autofac.Interfaces
 {
-	public interface IMicrophone : IId
-	{
-	}
+    public interface IMicrophone : IId
+    {
+    }
 }

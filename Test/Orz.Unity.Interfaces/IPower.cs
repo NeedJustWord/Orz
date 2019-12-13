@@ -1,6 +1,6 @@
 ﻿namespace Orz.Unity.Interfaces
 {
-	public interface IPower
-	{
-	}
+    public interface IPower
+    {
+    }
 }

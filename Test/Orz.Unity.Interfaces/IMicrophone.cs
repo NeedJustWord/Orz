@@ -1,6 +1,6 @@
 ﻿namespace Orz.Unity.Interfaces
 {
-	public interface IMicrophone
-	{
-	}
+    public interface IMicrophone
+    {
+    }
 }
