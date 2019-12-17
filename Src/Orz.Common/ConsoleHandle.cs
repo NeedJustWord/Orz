@@ -12,8 +12,11 @@ namespace Orz.Common
         private bool run;
         private string separator;
         private string lastExitCommand;
+        private bool needToHandleParams;
         private StringSplitOptions paramsOptions;
         private ConsoleHandleOptions handleOptions;
+        private Func<string, string> paramsHandleFunc;
+        private Func<string, string> commandHandleFunc;
         private Dictionary<string, Action<string, string[]>> dict;
 
         /// <summary>
@@ -35,7 +38,8 @@ namespace Orz.Common
             this.handleOptions = handleOptions;
 
             lastExitCommand = "";
-            var stringComparer = IsCommandIgnoreCase() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal;
+            needToHandleParams = IsNeedToHandleParams(out paramsHandleFunc);
+            var stringComparer = IsCommandIgnoreCase(out commandHandleFunc) ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal;
             dict = new Dictionary<string, Action<string, string[]>>(stringComparer);
 
             SetExitHandle(exitCommand, exitHandle);
@@ -129,8 +133,8 @@ namespace Orz.Common
 
                 if (dict.TryGetValue(commandStr, out var handle))
                 {
-                    string command = HandleCommand(commandStr);
-                    var param = NeedToHandleParams() ? paramsStr.Split(separator, paramsOptions).Select(t => HandleParams(t)).ToArray() : paramsStr.Split(separator, paramsOptions);
+                    string command = commandHandleFunc(commandStr);
+                    var param = needToHandleParams ? paramsStr.Split(separator, paramsOptions).Select(t => paramsHandleFunc(t)).ToArray() : paramsStr.Split(separator, paramsOptions);
                     handle(command, param);
                 }
                 else
@@ -150,28 +154,36 @@ namespace Orz.Common
             Start();
         }
 
-        private bool IsCommandIgnoreCase()
+        private bool IsCommandIgnoreCase(out Func<string, string> func)
         {
-            return (handleOptions & ConsoleHandleOptions.CommandToLower) == ConsoleHandleOptions.CommandToLower || (handleOptions & ConsoleHandleOptions.CommandToUpper) == ConsoleHandleOptions.CommandToUpper;
+            if ((handleOptions & ConsoleHandleOptions.CommandToLower) == ConsoleHandleOptions.CommandToLower)
+            {
+                func = t => t.ToLower();
+                return true;
+            }
+            if ((handleOptions & ConsoleHandleOptions.CommandToUpper) == ConsoleHandleOptions.CommandToUpper)
+            {
+                func = t => t.ToUpper();
+                return true;
+            }
+            func = t => t;
+            return false;
         }
 
-        private bool NeedToHandleParams()
+        private bool IsNeedToHandleParams(out Func<string, string> func)
         {
-            return (handleOptions & ConsoleHandleOptions.ParamsToLower) == ConsoleHandleOptions.ParamsToLower || (handleOptions & ConsoleHandleOptions.ParamsToUpper) == ConsoleHandleOptions.ParamsToUpper;
-        }
-
-        private string HandleCommand(string commandStr)
-        {
-            if ((handleOptions & ConsoleHandleOptions.CommandToLower) == ConsoleHandleOptions.CommandToLower) return commandStr.ToLower();
-            if ((handleOptions & ConsoleHandleOptions.CommandToUpper) == ConsoleHandleOptions.CommandToUpper) return commandStr.ToUpper();
-            return commandStr;
-        }
-
-        private string HandleParams(string paramsStr)
-        {
-            if ((handleOptions & ConsoleHandleOptions.ParamsToLower) == ConsoleHandleOptions.ParamsToLower) return paramsStr.ToLower();
-            if ((handleOptions & ConsoleHandleOptions.ParamsToUpper) == ConsoleHandleOptions.ParamsToUpper) return paramsStr.ToUpper();
-            return paramsStr;
+            if ((handleOptions & ConsoleHandleOptions.ParamsToLower) == ConsoleHandleOptions.ParamsToLower)
+            {
+                func = t => t.ToLower();
+                return true;
+            }
+            if ((handleOptions & ConsoleHandleOptions.ParamsToUpper) == ConsoleHandleOptions.ParamsToUpper)
+            {
+                func = t => t.ToUpper();
+                return true;
+            }
+            func = t => t;
+            return false;
         }
     }
 
