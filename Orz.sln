@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34729.46
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{B9884911-5CDD-47FB-84CE-1781BADAB9C3}"
 EndProject
@@ -27,11 +27,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Study", "Study", "{BC46B4F9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orz.Autofac", "Src\Orz.Autofac\Orz.Autofac.csproj", "{921B72FD-C0F0-4279-B531-C54DD3D20E62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orz.Autofac.Interfaces", "Test\Orz.Autofac.Interfaces\Orz.Autofac.Interfaces.csproj", "{A63AF92F-0D92-494B-8432-2034EFC2E8F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orz.Autofac.Interfaces", "Test\Orz.Autofac.Interfaces\Orz.Autofac.Interfaces.csproj", "{A63AF92F-0D92-494B-8432-2034EFC2E8F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orz.Autofac.Implement", "Test\Orz.Autofac.Implement\Orz.Autofac.Implement.csproj", "{DE15504E-3A29-41A2-945F-63666D68A6BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orz.Autofac.Implement", "Test\Orz.Autofac.Implement\Orz.Autofac.Implement.csproj", "{DE15504E-3A29-41A2-945F-63666D68A6BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orz.Autofac.Test", "Test\Orz.Autofac.Test\Orz.Autofac.Test.csproj", "{D1C907DC-5BA5-43FF-A8B2-E585D08737E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orz.Autofac.Test", "Test\Orz.Autofac.Test\Orz.Autofac.Test.csproj", "{D1C907DC-5BA5-43FF-A8B2-E585D08737E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orz.Common.MSTest", "Test\Orz.Common.MSTest\Orz.Common.MSTest.csproj", "{EC587B9D-07F8-4A42-953E-9BF590B5BE58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{D1C907DC-5BA5-43FF-A8B2-E585D08737E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1C907DC-5BA5-43FF-A8B2-E585D08737E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1C907DC-5BA5-43FF-A8B2-E585D08737E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC587B9D-07F8-4A42-953E-9BF590B5BE58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC587B9D-07F8-4A42-953E-9BF590B5BE58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC587B9D-07F8-4A42-953E-9BF590B5BE58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC587B9D-07F8-4A42-953E-9BF590B5BE58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +110,7 @@ Global
 		{A63AF92F-0D92-494B-8432-2034EFC2E8F1} = {AC8C2A21-5B06-45B0-95D9-199CB6085C4A}
 		{DE15504E-3A29-41A2-945F-63666D68A6BD} = {AC8C2A21-5B06-45B0-95D9-199CB6085C4A}
 		{D1C907DC-5BA5-43FF-A8B2-E585D08737E4} = {AC8C2A21-5B06-45B0-95D9-199CB6085C4A}
+		{EC587B9D-07F8-4A42-953E-9BF590B5BE58} = {AC8C2A21-5B06-45B0-95D9-199CB6085C4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB4DE66D-EABD-48AE-B96C-37082AE0F2BD}
